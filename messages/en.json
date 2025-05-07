@@ -1,7 +1,20 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"title": "Simball",
 	"landing_page_headline": "Simball, the symbol dictionary",
 	"landing_page_search_placeholder": "Search a word or symbol...",
 	"landing_page_search_button": "Search",
-	"landing_page_feeling_lucky_button": "I'm Feeling Lucky"
+	"landing_page_feeling_lucky_button": "I'm Feeling Lucky",
+	"sign_in_button": "Sign In",
+	"sign_up_button": "Sign Up",
+	"auth_quote_content": "A tool indispensable for understanding the symbols and meanings in Romanian literature.",
+	"auth_quote_author": "Anonymous user who definitely exists",
+	"login_title": "Login",
+	"login_description": "Enter your email and password to access the dictionary",
+	"login_email_placeholder": "email@example.com",
+	"login_password_placeholder": "Password",
+	"login_submit_button": "Login",
+	"login_alternative_text": "Or create a new account",
+	"login_alternative_button": "Create a new account",
+	"login_terms_and_conditions": "By continuing, you agree to the Terms and Conditions and the Privacy Policy"
 }

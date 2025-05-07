@@ -1,4 +1,4 @@
-import { authService } from '$lib/injection';
+import { authService } from '$lib/server/injection';
 import { json, redirect } from '@sveltejs/kit';
 
 export async function POST(event) {

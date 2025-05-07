@@ -1,5 +1,5 @@
 import { error, fail, redirect } from '@sveltejs/kit';
-import { authService } from '$lib/injection';
+import { authService } from '$lib/server/injection';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { message, setError, superValidate } from 'sveltekit-superforms';
@@ -39,7 +39,7 @@ export const actions = {
 		}
 
 
-		const userId = await authService.createUserAccount({
+		const userId = await authService.createContributorAccount({
 			email,
 			name,
 			password,

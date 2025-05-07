@@ -20,7 +20,7 @@ export class AuthService {
     }
 
 
-    async createUserAccount(params: {
+    async createContributorAccount(params: {
         email: string,
         name: string,
         password: string,
@@ -70,6 +70,8 @@ export class AuthService {
     async login(email: string, password: string): Promise<Id | 'wrongCredentials'> {
         assert(email.length < 100, 'Email too long');
         assert(password.length < 100, 'Password too long');
+        assert(email.includes('@'), 'Email must contain an @');
+
         const results = await this.db.select().from(table.users).where(eq(table.users.email, email));
 
         const existingUser = results.at(0);

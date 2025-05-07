@@ -1,9 +1,8 @@
-import { error, fail, redirect } from '@sveltejs/kit';
-import { authService } from '$lib/injection';
+import { fail, redirect } from '@sveltejs/kit';
+import { authService } from '$lib/server/injection';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
-import { message, setError, superValidate } from 'sveltekit-superforms';
-
+import { setError, superValidate } from 'sveltekit-superforms';
 const schema = z.object({
 	email: z.string().max(320, 'Emailul trebuie sa aiba maxim 320 caractere'),
 	password: z.string().max(640, 'Parola trebuie sa aiba maxim 640 caractere'),
