@@ -1,7 +1,16 @@
 <script lang="ts">
-	import { Sun, Moon, Languages, LogOut, User, ShieldUser, HeartHandshake, Loader2 } from '@lucide/svelte';
+	import {
+		Sun,
+		Moon,
+		Languages,
+		LogOut,
+		User,
+		ShieldUser,
+		HeartHandshake,
+		Loader2
+	} from '@lucide/svelte';
 
-	import { toggleMode } from 'mode-watcher';
+	// import { toggleMode } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button/index.js';
 
 	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
@@ -12,7 +21,8 @@
 	import { buttonVariants } from '$lib/components/ui/button/index.js';
 	import * as m from '$lib/paraglide/messages.js';
 	import { toast } from 'svelte-sonner';
-	
+	import { onMount } from 'svelte';
+
 	function switchToLanguage(newLanguage: AvailableLanguageTag) {
 		const canonicalPath = i18n.route(page.url.pathname);
 		const localisedPath = i18n.resolveRoute(canonicalPath, newLanguage);
@@ -36,7 +46,22 @@
 		}
 	}
 	let { children, data } = $props();
+	let isDarkTheme = $state(false);
+	onMount(() => {
+		isDarkTheme = localStorage.getItem('isDarkTheme') === 'true';
+	});
+	$effect(() => {
+		const htmlEl = document.documentElement;
+		if (isDarkTheme) {
+			localStorage.setItem('isDarkTheme', 'true');
+			htmlEl.classList.add('dark');
+		} else {
+			localStorage.setItem('isDarkTheme', 'false');
+			htmlEl.classList.remove('dark');
+		}
+	});
 </script>
+
 
 <nav class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
 	<div class=" mx-auto px-4 py-4">
@@ -46,7 +71,14 @@
 			</div>
 
 			<div class="gap-1 md:gap-3 flex items-center">
-				<Button onclick={toggleMode} variant="ghost" size="icon">
+				<Button
+					onclick={() => {
+						isDarkTheme = !isDarkTheme;
+
+					}}
+					variant="ghost"
+					size="icon"
+				>
 					<Sun
 						class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
 					/>
@@ -106,7 +138,11 @@
 							</DropdownMenu.Label>
 							<DropdownMenu.Separator />
 							{#if data.user.roles.includes('contributor')}
-								<DropdownMenu.Item class="flex items-center" onclick={() => goto(i18n.resolveRoute('/contributor'))} disabled={signoutLoading}>
+								<DropdownMenu.Item
+									class="flex items-center"
+									onclick={() => goto(i18n.resolveRoute('/contributor'))}
+									disabled={signoutLoading}
+								>
 									<HeartHandshake class="mr-2.5 h-4 w-4" />
 									<span>{m.contributor_panel_button()}</span>
 								</DropdownMenu.Item>
@@ -114,13 +150,21 @@
 
 							<DropdownMenu.Separator />
 							{#if data.user.roles.includes('admin')}
-								<DropdownMenu.Item class="flex items-center" onclick={() => goto(i18n.resolveRoute('/admin'))} disabled={signoutLoading}>
+								<DropdownMenu.Item
+									class="flex items-center"
+									onclick={() => goto(i18n.resolveRoute('/admin'))}
+									disabled={signoutLoading}
+								>
 									<ShieldUser class="mr-2.5 h-4 w-4" />
 									<span>{m.admin_panel_button()}</span>
 								</DropdownMenu.Item>
 							{/if}
 							<DropdownMenu.Separator />
-							<DropdownMenu.Item class="flex items-center text-destructive focus:text-destructive" onclick={signOut} disabled={signoutLoading}>
+							<DropdownMenu.Item
+								class="flex items-center text-destructive focus:text-destructive"
+								onclick={signOut}
+								disabled={signoutLoading}
+							>
 								{#if signoutLoading}
 									<Loader2 class="mr-2.5 h-4 w-4 animate-spin" />
 								{:else}
