@@ -3,6 +3,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { Alert, AlertDescription } from '$lib/components/ui/alert';
+	import * as m from '$lib/paraglide/messages.js';
 
 	import { superForm } from 'sveltekit-superforms';
 	import { Loader2 } from '@lucide/svelte';
@@ -15,8 +16,8 @@
 <div class="lg:p-8">
 	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 		<div class="flex flex-col space-y-2 text-center">
-			<h1 class="text-2xl font-semibold tracking-tight">Creează un cont nou</h1>
-			<p class="text-sm text-muted-foreground">Completează datele pentru a crea un cont nou</p>
+			<h1 class="text-2xl font-semibold tracking-tight">{m.register_title()}</h1>
+			<p class="text-sm text-muted-foreground">{m.register_description()}</p>
 		</div>
 
 		<div class="grid gap-6">
@@ -28,10 +29,10 @@
 				{/if}
 				<div class="grid gap-2">
 					<div class="flex gap-2">
-						<Label class="sr-only" for="name">Nume</Label>
+						<Label class="sr-only" for="name">{m.register_name_placeholder()}</Label>
 						<Input
 							id="name"
-							placeholder="Nume"
+							placeholder={m.register_name_placeholder()}
 							name="name"
 							type="text"
 							aria-invalid={$errors.name ? 'true' : 'false'}
@@ -51,7 +52,7 @@
 						<Label class="sr-only" for="email">Email</Label>
 						<Input
 							id="email"
-							placeholder="email@exemplu.com"
+							placeholder={m.register_email_placeholder()}
 							name="email"
 							autocapitalize="none"
 							autocomplete="email"
@@ -76,7 +77,7 @@
 							id="password"
 							name="password"
 							type="password"
-							placeholder="Parola"
+							placeholder={m.register_password_placeholder()}
 							aria-invalid={$errors.password ? 'true' : 'false'}
 							bind:value={$form.password}
 							autocomplete="new-password"
@@ -92,12 +93,12 @@
 					</div>
 
 					<div class="grid gap-1">
-						<Label class="sr-only" for="invitation">Cod de acces</Label>
+						<Label class="sr-only" for="invitation">{m.register_invitation_placeholder()}</Label>
 						<Input
 							id="invitation"
 							name="invitation"
 							type="text"
-							placeholder="Cod de acces"
+							placeholder={m.register_invitation_placeholder()}
 							aria-invalid={$errors.invitation ? 'true' : 'false'}
 							bind:value={$form.invitation}
 							required
@@ -115,7 +116,7 @@
 						{#if isLoading}
 							<Loader2 class="mr-2 h-4 w-4 animate-spin" />
 						{/if}
-						Înregistrează-te
+						{m.register_submit_button()}
 					</Button>
 				</div>
 			</form>
@@ -124,22 +125,18 @@
 					<span class="w-full border-t" />
 				</div>
 				<div class="relative flex justify-center text-xs uppercase">
-					<span class="bg-background px-2 text-muted-foreground">Sau, dacă ai deja cont</span>
+					<span class="bg-background px-2 text-muted-foreground"
+						>{m.register_alternative_text()}</span
+					>
 				</div>
 			</div>
-			<Button variant="outline" type="button" href="/auth/login">Autentifică-te</Button>
+			<Button variant="outline" type="button" href="/auth/login"
+				>{m.register_alternative_button()}</Button
+			>
 		</div>
 
 		<p class="px-8 text-center text-sm text-muted-foreground">
-			Continuând, accepți
-			<a href="/terms" class="underline underline-offset-4 hover:text-primary">
-				Termenii și condițiile
-			</a>
-			și
-			<a href="/privacy" class="underline underline-offset-4 hover:text-primary">
-				Politica de confidențialitate
-			</a>
-			.
+			{m.register_terms_and_conditions()}
 		</p>
 	</div>
 </div>

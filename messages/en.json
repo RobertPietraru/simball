@@ -16,5 +16,18 @@
 	"login_submit_button": "Login",
 	"login_alternative_text": "Or create a new account",
 	"login_alternative_button": "Create a new account",
-	"login_terms_and_conditions": "By continuing, you agree to the Terms and Conditions and the Privacy Policy"
+	"login_terms_and_conditions": "By continuing, you agree to the Terms and Conditions and the Privacy Policy",
+
+
+	"register_title": "Create a new account",
+	"register_description": "Fill in your details to create a new account",
+	"register_name_placeholder": "Name",
+	"register_email_placeholder": "email@example.com", 
+	"register_password_placeholder": "Password",
+	"register_submit_button": "Create account",
+	"register_alternative_text": "Or login with an existing account",
+	"register_invitation_placeholder": "Invitation code",	
+	"register_invitation_error": "Invalid invitation code",
+	"register_alternative_button": "Login",
+	"register_terms_and_conditions": "By continuing, you agree to the Terms and Conditions and the Privacy Policy"
 }
