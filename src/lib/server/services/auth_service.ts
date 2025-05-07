@@ -31,6 +31,7 @@ export class AuthService {
         assert(params.email.length < 100, 'Email too long');
         assert(params.name.length > 0, 'Name too short');
         assert(params.email.length > 0, 'Email too short');
+        assert(params.password.length < 100, 'Password too long');
         assert(params.password.length >= 8, 'Password too short');
         assert(params.email.includes('@'), 'Email must contain an @');
 
@@ -55,9 +56,10 @@ export class AuthService {
             const [userCreationResult] = await tx
                 .insert(table.users)
                 .values({
+                    name: params.name,
                     email: params.email,
                     passwordHash,
-                    role: 'user',
+                    roles: invitation[0].roles,
                 })
                 .returning({ id: table.users.id });
             await tx.delete(table.invitation).where(eq(table.invitation.id, params.invitationId));
@@ -127,7 +129,8 @@ export class AuthService {
                 user: {
                     id: table.users.id,
                     email: table.users.email,
-                    role: table.users.role,
+                    name: table.users.name,
+                    roles: table.users.roles,
                 },
                 session: table.session,
             })

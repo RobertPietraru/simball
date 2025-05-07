@@ -1,4 +1,33 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from ro!"
+	"title": "Simball",
+	"landing_page_headline": "Simball, dicționarul de simboluri",
+	"landing_page_search_placeholder": "Caută un cuvânt sau simbol...",
+	"landing_page_search_button": "Caută",
+	"landing_page_feeling_lucky_button": "Mă simt norocos",
+	"sign_in_button": "Conectare",
+	"sign_up_button": "Înregistrare",
+	"auth_quote_content": "Un instrument indispensabil pentru înțelegerea simbolurilor și semnificațiilor din literatura română.",
+	"auth_quote_author": "Un utilizator anonim care cu siguranță există",
+	"login_title": "Conectare",
+	"login_description": "Introdu emailul și parola pentru a accesa dicționarul",
+	"login_email_placeholder": "email@exemplu.com",
+	"login_password_placeholder": "Parola",
+	"login_submit_button": "Conectare",
+	"login_alternative_text": "Sau creează un cont nou",
+	"login_alternative_button": "Creează un cont nou",
+	"login_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și cu Politica de Confidențialitate",
+
+
+	"register_title": "Creează un cont nou",
+	"register_description": "Completează detaliile pentru a crea un cont nou",
+	"register_name_placeholder": "Nume",
+	"register_email_placeholder": "email@exemplu.com",
+	"register_password_placeholder": "Parola",
+	"register_submit_button": "Creează cont",
+	"register_alternative_text": "Sau conectează-te cu un cont existent",
+	"register_invitation_placeholder": "Cod de invitație",
+	"register_invitation_error": "Cod de invitație invalid",
+	"register_alternative_button": "Conectare",
+	"register_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și cu Politica de Confidențialitate"
 }

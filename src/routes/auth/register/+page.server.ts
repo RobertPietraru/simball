@@ -1,14 +1,16 @@
-import { error, fail, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { authService } from '$lib/server/injection';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
-import { message, setError, superValidate } from 'sveltekit-superforms';
+import { setError, superValidate } from 'sveltekit-superforms';
 import { isValidUUID } from '$lib/utils';
+import * as m from '$lib/paraglide/messages.js';
+
 const schema = z.object({
-	name: z.string().max(128, 'Numele trebuie sa aiba maxim 128 caractere').min(1, 'Numele este obligatoriu'),
-	email: z.string().max(320, 'Emailul trebuie sa aiba maxim 320 caractere').min(1, 'Emailul este obligatoriu'),
-	password: z.string().max(640, 'Parola trebuie sa aiba maxim 640 caractere').min(8, 'Parola trebuie sa aiba minim 8 caractere'),
-	invitation: z.string().max(120, 'Codul de acces trebuie sa aiba maxim 120 caractere').min(1, 'Codul de acces este obligatoriu'),
+	name: z.string().max(128, m.register_name_too_long()).min(1, m.register_name_required()),
+	email: z.string().max(320, m.register_email_too_long()).min(1, m.register_email_required()),
+	password: z.string().max(640, m.register_password_too_long()).min(8, m.register_password_required()),
+	invitation: z.string().max(120, m.register_invitation_too_long()).min(1, m.register_invitation_required()),
 });
 
 
@@ -34,7 +36,7 @@ export const actions = {
 
 		const { email, password, name, invitation: invitationId } = form.data;
 		if (!isValidUUID(invitationId)) {
-			setError(form, 'invitation', 'Codul de acces este invalid');
+			setError(form, 'invitation', m.register_invitation_error());
 			return fail(400, { form });
 		}
 
@@ -46,11 +48,11 @@ export const actions = {
 			invitationId,
 		});
 		if (userId === 'unknown') {
-			setError(form, 'invitation', 'Codul de acces este invalid');
+			setError(form, 'invitation', m.register_invitation_error());
 			return fail(400, { form });
 		}
 		if (userId === 'emailAlreadyExists') {
-			setError(form, 'email', 'Emailul este deja inregistrat');
+			setError(form, 'email', m.register_email_already_exists());
 			return fail(400, { form });
 		}
 		const sessionToken = await authService.generateSessionToken();

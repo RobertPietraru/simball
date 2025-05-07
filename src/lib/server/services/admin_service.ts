@@ -11,8 +11,9 @@ export class AdminService {
     }
 
 
-    async createInvitation() {
+    async createInvitation(roles: table.User['roles']) {
         const invitation = await this.db.insert(table.invitation).values({
+            roles,
             expiresAt: new Date(Date.now() + DAY_IN_MS),
         })
             .returning({ id: table.invitation.id });

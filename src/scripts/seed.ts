@@ -20,8 +20,9 @@ async function Auth(db: PostgresJsDatabase) {
   const [admin] = await db.insert(tables.users).values([
     {
       email: 'admin@pietrocka.com',
+      name: 'Robert Pietraru',
       passwordHash: passwordHash,
-      role: 'admin',
+      roles: ['admin', 'contributor'],
     },
   ]).returning({ id: tables.users.id });
 
