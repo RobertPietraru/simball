@@ -58,10 +58,18 @@
 	"admin_panel_button": "Admin Panel",
 	
 
-	"sign_out_error": "Failed to sign out"
+	"sign_out_error": "Failed to sign out",
 	
+	"admin_panel_users": "Users",
+	"admin_panel_words": "Words",
+	"admin_panel_sources": "Sources",
+	"admin_panel_users_description": "Manage users and their permissions",
+	"admin_panel_words_description": "Manage dictionary words and definitions",
+	"admin_panel_sources_description": "Manage word sources and references",
+	"admin_panel_manage_users": "Admin Panel",
 
-
-
-
+	"admin_breadcrumbs_admin": "Admin Panel",
+	"admin_breadcrumbs_users": "Users",
+	"admin_breadcrumbs_words": "Words",
+	"admin_breadcrumbs_sources": "Sources"
 }
