@@ -1,4 +1,67 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from en!"
+	"title": "Simball",
+	"landing_page_headline": "Simball, the symbol dictionary",
+	"landing_page_search_placeholder": "Search a word or symbol...",
+	"landing_page_search_button": "Search",
+	"landing_page_feeling_lucky_button": "I'm Feeling Lucky",
+	"sign_in_button": "Sign In",
+	"sign_up_button": "Sign Up",
+	"auth_quote_content": "A tool indispensable for understanding the symbols and meanings in Romanian literature.",
+	"auth_quote_author": "Anonymous user who definitely exists",
+
+
+	"login_title": "Login",
+	"login_description": "Enter your email and password to access the dictionary",
+	"login_email_placeholder": "email@example.com",
+	"login_password_placeholder": "Password",
+	"login_submit_button": "Login",
+	"login_alternative_text": "Or create a new account",
+	"login_alternative_button": "Create a new account",
+	"login_terms_and_conditions": "By continuing, you agree to the Terms and Conditions and the Privacy Policy",
+
+
+	"login_wrong_credentials": "Wrong email or password",
+	"login_email_too_long": "Email must be at most 320 characters",
+	"login_password_too_long": "Password must be at most 640 characters",
+
+
+	"register_title": "Create a new account",
+	"register_description": "Fill in your details to create a new account",
+	"register_name_placeholder": "Name",
+	"register_email_placeholder": "email@example.com", 
+	"register_password_placeholder": "Password",
+	"register_submit_button": "Create account",
+	"register_alternative_text": "Or login with an existing account",
+	"register_invitation_placeholder": "Invitation code",	
+	"register_invitation_error": "Invalid invitation code",
+	"register_alternative_button": "Login",
+	"register_terms_and_conditions": "By continuing, you agree to the Terms and Conditions and the Privacy Policy",
+
+
+
+	"register_email_already_exists": "Email already exists",
+	"register_email_too_long": "Email must be at most 320 characters",
+	"register_password_too_long": "Password must be at most 640 characters",
+	"register_name_too_long": "Name must be at most 120 characters",
+	"register_invitation_too_long": "Invitation code must be at most 36 characters",
+	"register_email_required": "Email is required",
+	"register_password_required": "Password is required",
+	"register_name_required": "Name is required",
+	"register_invitation_required": "Invitation code is required",
+
+
+	"role_admin_account": "Admin Account",
+	"role_contributor_account": "Contributor Account",
+	"sign_out_button": "Sign Out",
+	"contributor_panel_button": "Contributor Panel",
+	"admin_panel_button": "Admin Panel",
+	
+
+	"sign_out_error": "Failed to sign out"
+	
+
+
+
+
 }
