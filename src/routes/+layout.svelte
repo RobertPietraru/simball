@@ -155,15 +155,30 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end" class="w-56">
 								<DropdownMenu.Label>
-									<div class="flex flex-col gap-1 px-2 py-1.5">
-										<p class="text-sm font-medium truncate">{data.user.name}</p>
-										<p class="text-xs text-muted-foreground capitalize">
-											{#if data.user.roles.includes('admin')}
-												{m.role_admin_account()}
-											{:else if data.user.roles.includes('contributor')}
-												{m.role_contributor_account()}
+									<div class="flex items-center gap-2">
+										<div
+											class="rounded-full aspect-square bg-accent text-accent-foreground hover:bg-accent/60"
+										>
+											{#if data.user.name}
+												<div class=" h-10 w-10 flex items-center justify-center">
+													{data.user.name
+														.split(' ')
+														.map((name: string) => name[0])
+														.join('')
+														.toUpperCase()}
+												</div>
 											{/if}
-										</p>
+										</div>
+										<div class="flex flex-col gap-1 px-2 py-1.5">
+											<p class="text-sm font-medium truncate">{data.user.name}</p>
+											<p class="text-xs text-muted-foreground capitalize">
+												{#if data.user.roles.includes('admin')}
+													{m.role_admin_account()}
+												{:else if data.user.roles.includes('contributor')}
+													{m.role_contributor_account()}
+												{/if}
+											</p>
+										</div>
 									</div>
 								</DropdownMenu.Label>
 								<DropdownMenu.Separator />
