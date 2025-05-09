@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HeartHandshake, ShieldUser, User } from '@lucide/svelte';
+	import { BookA, BookOpen, HeartHandshake, LibraryBig, ShieldUser, User } from '@lucide/svelte';
 	import * as m from '$lib/paraglide/messages.js';
 </script>
 
@@ -20,7 +20,7 @@
 			href="/admin/words"
 			class="p-6 bg-card text-card-foreground rounded-lg border border-border hover:border-primary transition-colors"
 		>
-			<ShieldUser class="w-12 h-12 mb-4" />
+			<BookA class="w-12 h-12 mb-4" />
 			<h2 class="text-2xl font-semibold mb-2">{m.admin_panel_words()}</h2>
 			<p class="text-muted-foreground">{m.admin_panel_words_description()}</p>
 		</a>
@@ -29,7 +29,7 @@
 			href="/admin/sources"
 			class="p-6 bg-card text-card-foreground rounded-lg border border-border hover:border-primary transition-colors"
 		>
-			<HeartHandshake class="w-12 h-12 mb-4" />
+			<LibraryBig class="w-12 h-12 mb-4" />
 			<h2 class="text-2xl font-semibold mb-2">{m.admin_panel_sources()}</h2>
 			<p class="text-muted-foreground">{m.admin_panel_sources_description()}</p>
 		</a>

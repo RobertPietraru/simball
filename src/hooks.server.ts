@@ -2,6 +2,7 @@ import { i18n } from '$lib/i18n';
 import { redirect, type Handle, } from '@sveltejs/kit';
 import { authService } from '$lib/server/injection';
 import { sequence } from '@sveltejs/kit/hooks';
+import { languageTag } from '$lib/paraglide/runtime';
 const handleParaglide: Handle = i18n.handle();
 const handleAuth: Handle = async ({ event, resolve }) => {
 	const sessionToken = event.cookies.get(authService.sessionCookieName);
@@ -32,7 +33,7 @@ export const authentication: Handle = async ({ event, resolve }) => {
 	// Protect any routes that don't start with the unprotectedPrefix or are not the root path
 	if (!unprotectedPrefix.some((path) => event.url.pathname.startsWith(path)) && !unprotectedRoutes.includes(event.url.pathname)) {
 		if (!event.locals.user) {
-			redirect(303, '/auth/login');
+			redirect(303, i18n.resolveRoute('/auth/login'));
 		}
 	}
 
@@ -46,7 +47,7 @@ export const adminAuthorization: Handle = async ({ event, resolve }) => {
 	if (event.url.pathname.startsWith('/admin')) {
 
 		if (!event.locals.user?.roles.includes('admin')) {
-			redirect(303, '/');
+			redirect(303, i18n.resolveRoute('/'));
 		}
 	}
 

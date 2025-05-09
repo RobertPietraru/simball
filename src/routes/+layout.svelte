@@ -75,7 +75,7 @@
 		<div class=" mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-8">
-					<a href="/" class="text-2xl font-bold">
+					<a href={i18n.resolveRoute('/')} class="text-2xl font-bold">
 						Simball
 						<span class="text-xs text-muted-foreground">
 							{languageTag()}

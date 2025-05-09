@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { setError, superValidate } from 'sveltekit-superforms';
 import { isValidUUID } from '$lib/utils';
 import * as m from '$lib/paraglide/messages.js';
+import { i18n } from '$lib/i18n';
 
 const schema = z.object({
 	name: z.string().max(128, m.register_name_too_long()).min(1, m.register_name_required()),
@@ -16,7 +17,7 @@ const schema = z.object({
 
 export const load = async (event) => {
 	if (event.locals.user) {
-		return redirect(302, '/');
+		return redirect(302, i18n.resolveRoute('/'));
 	}
 
 	const pathParams = new URL(event.url).searchParams;
@@ -60,6 +61,6 @@ export const actions = {
 
 		authService.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-		return redirect(302, '/');
+		return redirect(302, i18n.resolveRoute('/'));
 	},
 };
