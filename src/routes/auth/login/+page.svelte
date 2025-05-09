@@ -84,7 +84,7 @@
 					<span class="bg-background px-2 text-muted-foreground">{m.login_alternative_text()}</span>
 				</div>
 			</div>
-			<Button variant="outline" type="button" href="/auth/register"
+			<Button variant="outline" type="button" href="/auth/register?redirect={data.redirectUrl}"
 				>{m.login_alternative_button()}</Button
 			>
 		</div>

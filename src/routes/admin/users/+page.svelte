@@ -122,7 +122,7 @@
 							class="rounded-none"
 							onclick={() => {
 								navigator.clipboard.writeText(
-									`${window.location.origin}/auth/register?code=${invitation.id}`
+									`${window.location.origin}/auth/register?code=${invitation.id}&redirect=${window.location.pathname}`
 								);
 								toast.success(m.admin_users_invitations_copy_success());
 							}}
@@ -206,7 +206,7 @@
 							class="rounded-none"
 							onclick={() => {
 								navigator.clipboard.writeText(
-									`${window.location.origin}/auth/register?code=${invitation.id}`
+									`${window.location.origin}/auth/register?code=${invitation.id}&redirect=${window.location.pathname}`
 								);
 								toast.success(m.admin_users_invitations_copy_success());
 							}}

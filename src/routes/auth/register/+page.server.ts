@@ -24,7 +24,8 @@ export const load = async (event) => {
 	const pathCode = pathParams.get('code') ?? '';
 	const form = await superValidate(zod(schema));
 	form.data.invitation = pathCode;
-	return { form };
+	const redirectUrl = pathParams.get('redirect') ?? '/';
+	return { form, redirectUrl };
 };
 
 export const actions = {
@@ -61,6 +62,7 @@ export const actions = {
 
 		authService.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-		return redirect(302, '/');
+		const redirectUrl = event.url.searchParams.get('redirect') ?? '/';
+		return redirect(302, redirectUrl);
 	},
 };
