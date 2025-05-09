@@ -92,10 +92,10 @@
 						size="icon"
 					>
 						<Sun
-							class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+							class="h-[1.2rem] w-[1.2rem] absolute transition-all duration-500 ease-in-out dark:opacity-0 dark:translate-y-8 dark:rotate-180 dark:scale-75"
 						/>
-						<Moon
-							class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+						<Moon 
+							class="h-[1.2rem] w-[1.2rem] transition-all duration-500 ease-in-out opacity-0 translate-y-8 rotate-180 scale-75 dark:opacity-100 dark:translate-y-0 dark:rotate-0 dark:scale-100"
 						/>
 						<span class="sr-only">Toggle theme</span>
 					</Button>
