@@ -99,7 +99,9 @@
 	"admin_users_invitations_create_success": "Invitation created successfully",
 	"admin_users_invitations_create_error": "Failed to create invitation",
 	"admin_users_invitations_delete_success": "Invitation deleted successfully",
-	"admin_users_invitations_delete_error": "Failed to delete invitation"
+	"admin_users_invitations_delete_error": "Failed to delete invitation",
+
+	"admin_users_invitations_copy_success": "Invitation copied to clipboard"
 
 
 

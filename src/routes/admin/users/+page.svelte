@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { Plus } from '@lucide/svelte';
+	import { Copy, Plus } from '@lucide/svelte';
 	import { languageTag } from '$lib/paraglide/runtime.js';
 	import { Badge } from '$lib/components/ui/badge/index.js';
 	import {
@@ -16,8 +16,10 @@
 	import { Trash2 } from '@lucide/svelte';
 	import { localeDate } from '$lib/utils.js';
 	import { toast } from 'svelte-sonner';
+	import { fade, slide } from 'svelte/transition';
 	const { data } = $props();
-	let loading = $state(false);
+	let creating = $state(false);
+	let deletingIds = $state<string[]>([]);
 </script>
 
 <main class="space-y-8 mb-8">
@@ -33,13 +35,13 @@
 			</TableRow>
 		</TableHeader>
 		<TableBody>
-			{#each data.users as user}
-				<TableRow>
+			{#each data.users as user, i (user.id)}
+				<tr class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors">
 					<TableCell>{user.id}</TableCell>
 					<TableCell>{user.name}</TableCell>
 					<TableCell>{user.email}</TableCell>
 					<TableCell>
-						<ul class="flex flex-wrap gap-2">
+						<ul class="flex flex-wrap gap-2" transition:fade>
 							{#each user.roles as role}
 								{#if role === 'admin'}
 									<Badge variant="outline">{m.admin_users_roles_admin()}</Badge>
@@ -49,26 +51,28 @@
 							{/each}
 						</ul>
 					</TableCell>
-					<TableCell class="justify-end">
-						<form
-							action="?/deleteUser"
-							method="post"
-							use:enhance={() => {
-								loading = true;
-								return async ({ update }) => {
-									await update();
-									loading = false;
-									toast.success(m.admin_users_users_delete_success());
-								};
-							}}
-						>
-							<input type="hidden" name="id" value={user.id} />
-							<Button variant="destructive" type="submit" disabled={loading}
-								><Trash2 class="w-4 h-4" /></Button
+					<TableCell>
+						{#if user.id !== data.user!.id}
+							<form
+								action="?/deleteUser"
+								method="post"
+								use:enhance={() => {
+									deletingIds.push(user.id);
+									return async ({ update }) => {
+										await update();
+										deletingIds.splice(deletingIds.indexOf(user.id), 1);
+										toast.success(m.admin_users_users_delete_success());
+									};
+								}}
 							>
-						</form>
+								<input type="hidden" name="id" value={user.id} />
+								<Button variant="destructive" type="submit" disabled={deletingIds.includes(user.id)}
+									><Trash2 class="w-4 h-4" /></Button
+								>
+							</form>
+						{/if}
 					</TableCell>
-				</TableRow>
+				</tr>
 			{/each}
 		</TableBody>
 	</Table>
@@ -79,16 +83,16 @@
 			action="?/createInvitation"
 			method="post"
 			use:enhance={() => {
-				loading = true;
+				creating = true;
 				return async ({ update }) => {
 					await update();
-					loading = false;
+					creating = false;
 					toast.success(m.admin_users_invitations_create_success());
 				};
 			}}
 		>
 			<input type="hidden" name="role" value="admin" />
-			<Button type="submit" class="rounded-none">
+			<Button type="submit" class="rounded-none" disabled={creating}>
 				<Plus class="w-4 h-4" />
 				<span>
 					{m.admin_users_roles_admin()}
@@ -99,15 +103,36 @@
 	<Table class="rounded-md border">
 		<TableHeader class="p-0 m-0">
 			<TableRow class="p-0 m-0">
+				<TableHead class="w-8"></TableHead>
 				<TableHead>{m.admin_users_id()}</TableHead>
 				<TableHead>{m.admin_users_invitations_created_at()}</TableHead>
 				<TableHead>{m.admin_users_invitations_expires_at()}</TableHead>
 			</TableRow>
 		</TableHeader>
 		<TableBody>
-			{#each data.adminInvitations as invitation}
-				<TableRow>
-					<TableCell>{invitation.id}</TableCell>
+			{#each data.adminInvitations as invitation, i (invitation.id)}
+				<tr
+					class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+					transition:fade
+				>
+					<TableCell class="w-8">
+						<Button
+							variant="ghost"
+							size="icon"
+							class="rounded-none"
+							onclick={() => {
+								navigator.clipboard.writeText(
+									`${window.location.origin}/auth/register?code=${invitation.id}`
+								);
+								toast.success(m.admin_users_invitations_copy_success());
+							}}
+						>
+							<Copy class="w-4 h-4" />
+						</Button>
+					</TableCell>
+					<TableCell>
+						<span>{invitation.id}</span>
+					</TableCell>
 					<TableCell>{localeDate(invitation.createdAt, languageTag())}</TableCell>
 					<TableCell>{localeDate(invitation.expiresAt, languageTag())}</TableCell>
 					<TableCell class="justify-end">
@@ -115,21 +140,23 @@
 							action="?/deleteInvitation"
 							method="post"
 							use:enhance={() => {
-								loading = true;
+								deletingIds.push(invitation.id);
 								return async ({ update }) => {
 									await update();
-									loading = false;
+									deletingIds.splice(deletingIds.indexOf(invitation.id), 1);
 									toast.success(m.admin_users_invitations_delete_success());
 								};
 							}}
 						>
 							<input type="hidden" name="id" value={invitation.id} />
-							<Button variant="destructive" type="submit" disabled={loading}
-								><Trash2 class="w-4 h-4" /></Button
+							<Button
+								variant="destructive"
+								type="submit"
+								disabled={deletingIds.includes(invitation.id)}><Trash2 class="w-4 h-4" /></Button
 							>
 						</form>
 					</TableCell>
-				</TableRow>
+				</tr>
 			{/each}
 		</TableBody>
 	</Table>
@@ -139,15 +166,15 @@
 			action="?/createInvitation"
 			method="post"
 			use:enhance={() => {
-				loading = true;
+				creating = true;
 				return async ({ update }) => {
 					await update();
-					loading = false;
+					creating = false;
 				};
 			}}
 		>
 			<input type="hidden" name="role" value="contributor" />
-			<Button type="submit" class="rounded-none">
+			<Button type="submit" class="rounded-none" disabled={creating}>
 				<Plus class="w-4 h-4" />
 				<span>
 					{m.admin_users_roles_contributor()}
@@ -159,6 +186,7 @@
 	<Table class="rounded-md border">
 		<TableHeader>
 			<TableRow>
+				<TableHead class="w-8"></TableHead>
 				<TableHead>{m.admin_users_id()}</TableHead>
 				<TableHead>{m.admin_users_invitations_created_at()}</TableHead>
 				<TableHead>{m.admin_users_invitations_expires_at()}</TableHead>
@@ -166,9 +194,29 @@
 			</TableRow>
 		</TableHeader>
 		<TableBody>
-			{#each data.contributorInvitations as invitation}
-				<TableRow>
-					<TableCell>{invitation.id}</TableCell>
+			{#each data.contributorInvitations as invitation, i (invitation.id)}
+				<tr
+					class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+					transition:fade
+				>
+					<TableCell>
+						<Button
+							variant="ghost"
+							size="icon"
+							class="rounded-none"
+							onclick={() => {
+								navigator.clipboard.writeText(
+									`${window.location.origin}/auth/register?code=${invitation.id}`
+								);
+								toast.success(m.admin_users_invitations_copy_success());
+							}}
+						>
+							<Copy class="w-4 h-4" />
+						</Button>
+					</TableCell>
+					<TableCell>
+						<span>{invitation.id}</span>
+					</TableCell>
 					<TableCell>{localeDate(invitation.createdAt, languageTag())}</TableCell>
 					<TableCell>{localeDate(invitation.expiresAt, languageTag())}</TableCell>
 					<TableCell class="justify-end">
@@ -176,21 +224,23 @@
 							action="?/deleteInvitation"
 							method="post"
 							use:enhance={() => {
-								loading = true;
+								deletingIds.push(invitation.id);
 								return async ({ update }) => {
 									await update();
-									loading = false;
+									deletingIds.splice(deletingIds.indexOf(invitation.id), 1);
 									toast.success(m.admin_users_invitations_delete_success());
 								};
 							}}
 						>
 							<input type="hidden" name="id" value={invitation.id} />
-							<Button variant="destructive" type="submit" disabled={loading}
-								><Trash2 class="w-4 h-4" /></Button
+							<Button
+								variant="destructive"
+								type="submit"
+								disabled={deletingIds.includes(invitation.id)}><Trash2 class="w-4 h-4" /></Button
 							>
 						</form>
 					</TableCell>
-				</TableRow>
+				</tr>
 			{/each}
 		</TableBody>
 	</Table>

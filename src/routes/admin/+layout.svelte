@@ -13,7 +13,7 @@
 	// import { toggleMode } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button/index.js';
 
-	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
+	import { languageTag, type AvailableLanguageTag } from '$lib/paraglide/runtime';
 	import { i18n } from '$lib/i18n';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
@@ -26,6 +26,7 @@
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 
 	function switchToLanguage(newLanguage: AvailableLanguageTag) {
+		console.log('languageTag', languageTag());
 		const canonicalPath = i18n.route(page.url.pathname);
 		const localisedPath = i18n.resolveRoute(canonicalPath, newLanguage);
 		goto(localisedPath);
@@ -68,7 +69,12 @@
 	<div class=" mx-auto px-4 py-4">
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-8">
-				<a href="/" class="text-2xl font-bold">Simball</a>
+				<a href="/" class="text-2xl font-bold">
+					Simball
+					<span class="text-xs text-muted-foreground">
+						{languageTag()}
+					</span>
+				</a>
 			</div>
 
 			<div class="gap-1 md:gap-3 flex items-center">
@@ -92,12 +98,30 @@
 						<Languages class="h-[1.2rem] w-[1.2rem]" />
 					</DropdownMenu.Trigger>
 					<DropdownMenu.Content align="end">
-						<DropdownMenu.Item onclick={() => switchToLanguage('ro')}>Română</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('en')}>English</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('hu')}>Magyar</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('uk')}>Українська</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('de')}>Deutsch</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('ru')}>Русский</DropdownMenu.Item>
+						<DropdownMenu.Item
+							onclick={() => switchToLanguage('ro')}
+							class={languageTag() === 'ro' ? 'bg-accent' : ''}>Română</DropdownMenu.Item
+						>
+						<DropdownMenu.Item
+							onclick={() => switchToLanguage('en')}
+							class={languageTag() === 'en' ? 'bg-accent' : ''}>English</DropdownMenu.Item
+						>
+						<DropdownMenu.Item
+							onclick={() => switchToLanguage('hu')}
+							class={languageTag() === 'hu' ? 'bg-accent' : ''}>Magyar</DropdownMenu.Item
+						>
+						<DropdownMenu.Item
+							onclick={() => switchToLanguage('uk')}
+							class={languageTag() === 'uk' ? 'bg-accent' : ''}>Українська</DropdownMenu.Item
+						>
+						<DropdownMenu.Item
+							onclick={() => switchToLanguage('de')}
+							class={languageTag() === 'de' ? 'bg-accent' : ''}>Deutsch</DropdownMenu.Item
+						>
+						<DropdownMenu.Item
+							onclick={() => switchToLanguage('ru')}
+							class={languageTag() === 'ru' ? 'bg-accent' : ''}>Русский</DropdownMenu.Item
+						>
 					</DropdownMenu.Content>
 				</DropdownMenu.Root>
 				{#if !data.user}
@@ -139,7 +163,7 @@
 							<DropdownMenu.Separator />
 							{#if data.user.roles.includes('contributor')}
 								<DropdownMenu.Item
-									class="flex items-center"
+									class="flex items-center {window.location.pathname.startsWith(i18n.resolveRoute('/contributor')) ? 'bg-accent' : ''}"
 									onclick={() => goto(i18n.resolveRoute('/contributor'))}
 									disabled={signoutLoading}
 								>
@@ -151,7 +175,7 @@
 							<DropdownMenu.Separator />
 							{#if data.user.roles.includes('admin')}
 								<DropdownMenu.Item
-									class="flex items-center"
+									class="flex items-center {window.location.pathname.startsWith(i18n.resolveRoute('/admin')) ? 'bg-accent' : ''}"
 									onclick={() => goto(i18n.resolveRoute('/admin'))}
 									disabled={signoutLoading}
 								>
@@ -182,7 +206,7 @@
 <div class="container">
 	<Breadcrumb.Root class="py-4">
 		<Breadcrumb.List>
-			<Breadcrumb.Separator class="p-0 m-0"/>
+			<Breadcrumb.Separator class="p-0 m-0" />
 			{#each data.crumbs as crumb, index}
 				<Breadcrumb.Item>
 					<Breadcrumb.Link href={crumb.href}>{crumb.label}</Breadcrumb.Link>

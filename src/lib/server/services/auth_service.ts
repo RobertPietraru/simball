@@ -131,6 +131,7 @@ export class AuthService {
                     email: table.users.email,
                     name: table.users.name,
                     roles: table.users.roles,
+                    createdAt: table.users.createdAt,
                 },
                 session: table.session,
             })

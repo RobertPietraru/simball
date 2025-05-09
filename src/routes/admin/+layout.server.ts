@@ -1,17 +1,14 @@
 import * as m from '$lib/paraglide/messages.js';
+import { i18n } from '$lib/i18n';
+import { languageTag } from '$lib/paraglide/runtime';
 
 export const load = async ({ locals, url }) => {
-    let path = url.pathname;
-    console.log(path);
-    const sections = path.split('/')
     const crumbs = []
+    const language = languageTag();
+    const sections = url.pathname.split('/').filter(e => e !== '' && e !== language);
     while (sections.length) {
-        
+        const path = '/' + sections.join('/');
         const section = sections.pop()!;
-
-        if (section.length === 0) continue;
-
-        const path = '/' + sections.join('/')
         if (section === 'admin') {
             crumbs.push({
                 label: m.admin_breadcrumbs_admin(),

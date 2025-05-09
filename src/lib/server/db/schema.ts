@@ -8,6 +8,7 @@ export const users = pgTable('user', {
 	name: text('name').notNull(),
 	passwordHash: text('password_hash').notNull(),
 	roles: text('roles', { enum: ['admin', 'contributor'] }).array().notNull(),
+	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull().default(sql`now()`),
 });
 // Session
 export const session = pgTable('session', {

@@ -1,6 +1,6 @@
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import * as table from '$lib/server/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, desc } from 'drizzle-orm';
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
@@ -20,14 +20,6 @@ export class AdminService {
         return invitation[0].id;
     }
 
-    async getAllUsers() {
-        return await this.db.select().from(table.users);
-    }
-
-    async getAllInvitations() {
-        return await this.db.select().from(table.invitation);
-    }
-
     async deleteInvitation(id: string) {
         await this.db.delete(table.invitation).where(eq(table.invitation.id, id));
     }
@@ -37,11 +29,11 @@ export class AdminService {
     }
 
     async showAllUsers() {
-        return await this.db.select().from(table.users);
+        return await this.db.select().from(table.users).orderBy(desc(table.users.createdAt));
     }
 
     async showAllInvitations() {
-        return await this.db.select().from(table.invitation);
+        return await this.db.select().from(table.invitation).orderBy(desc(table.invitation.createdAt));
     }
 }
 

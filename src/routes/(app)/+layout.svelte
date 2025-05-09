@@ -12,6 +12,7 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 
 	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
+	import { languageTag } from '$lib/paraglide/runtime';
 	import { i18n } from '$lib/i18n';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
@@ -21,7 +22,9 @@
 	import { toast } from 'svelte-sonner';
 	import { onMount } from 'svelte';
 
+
 	function switchToLanguage(newLanguage: AvailableLanguageTag) {
+
 		const canonicalPath = i18n.route(page.url.pathname);
 		const localisedPath = i18n.resolveRoute(canonicalPath, newLanguage);
 		goto(localisedPath);
@@ -90,12 +93,12 @@
 						<Languages class="h-[1.2rem] w-[1.2rem]" />
 					</DropdownMenu.Trigger>
 					<DropdownMenu.Content align="end">
-						<DropdownMenu.Item onclick={() => switchToLanguage('ro')}>Română</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('en')}>English</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('hu')}>Magyar</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('uk')}>Українська</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('de')}>Deutsch</DropdownMenu.Item>
-						<DropdownMenu.Item onclick={() => switchToLanguage('ru')}>Русский</DropdownMenu.Item>
+						<DropdownMenu.Item onclick={() => switchToLanguage('ro')} class={languageTag() === 'ro' ? 'bg-accent' : ''}>Română</DropdownMenu.Item>
+						<DropdownMenu.Item onclick={() => switchToLanguage('en')} class={languageTag() === 'en' ? 'bg-accent' : ''}>English</DropdownMenu.Item>
+						<DropdownMenu.Item onclick={() => switchToLanguage('hu')} class={languageTag() === 'hu' ? 'bg-accent' : ''}>Magyar</DropdownMenu.Item>
+						<DropdownMenu.Item onclick={() => switchToLanguage('uk')} class={languageTag() === 'uk' ? 'bg-accent' : ''}>Українська</DropdownMenu.Item>
+						<DropdownMenu.Item onclick={() => switchToLanguage('de')} class={languageTag() === 'de' ? 'bg-accent' : ''}	>Deutsch</DropdownMenu.Item>
+						<DropdownMenu.Item onclick={() => switchToLanguage('ru')} class={languageTag() === 'ru' ? 'bg-accent' : ''}>Русский</DropdownMenu.Item>
 					</DropdownMenu.Content>
 				</DropdownMenu.Root>
 				{#if !data.user}
