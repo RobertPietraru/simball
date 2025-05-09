@@ -165,14 +165,17 @@ export class AuthService {
 
     setSessionTokenCookie(event: RequestEvent, token: string, expiresAt: Date) {
         event.cookies.set(this.sessionCookieName, token, {
-            expires: expiresAt,
-            path: '/'
+            path: '/',
+            httpOnly: true,
+            sameSite: 'lax',
+            secure: true,
+            expires: expiresAt
         });
     }
 
     deleteSessionTokenCookie(event: RequestEvent) {
         event.cookies.delete(this.sessionCookieName, {
-            path: '/'
+            path: '/',
         });
     }
 }

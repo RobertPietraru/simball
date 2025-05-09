@@ -44,7 +44,7 @@
 		});
 		if (response.ok) {
 			signoutLoading = false;
-			goto('/auth/login');
+			goto(i18n.resolveRoute('/auth/login'));
 		} else {
 			signoutLoading = false;
 			toast.error(m.sign_out_error());
@@ -74,7 +74,7 @@
 			<div class=" mx-auto px-4 py-4">
 				<div class="flex items-center justify-between">
 					<div class="flex items-center gap-8">
-						<a href='/' class="text-2xl font-bold">
+						<a href={i18n.resolveRoute('/')} class="text-2xl font-bold">
 							Simball
 							<span class="text-xs text-muted-foreground">
 								{languageTag()}
@@ -130,7 +130,7 @@
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 						{#if !data.user}
-							<Button href='/auth/login' variant="outline"
+							<Button href={i18n.resolveRoute('/auth/login')} variant="outline"
 								>{m.sign_in_button()}</Button
 							>
 						{:else}

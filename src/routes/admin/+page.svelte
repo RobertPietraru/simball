@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { BookA, BookOpen, HeartHandshake, LibraryBig, ShieldUser, User } from '@lucide/svelte';
 	import * as m from '$lib/paraglide/messages.js';
+	import { i18n } from '$lib/i18n';
 </script>
 
 

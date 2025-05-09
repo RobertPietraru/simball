@@ -30,8 +30,8 @@ const handleAuth: Handle = async ({ event, resolve }) => {
 const protectedRoutes = ['/contributor', '/admin'];
 export const authentication: Handle = async ({ event, resolve }) => {
 	// Protect any routes that don't start with the unprotectedPrefix or are not the root path
-	if (protectedRoutes.some((path) => event.url.pathname.startsWith(path)) && !event.locals.user) {
-		redirect(303, '/auth/login?redirect=' + event.url.pathname);
+	if (protectedRoutes.some((path) => event.url.pathname.includes(path)) && !event.locals.user) {
+		redirect(303, i18n.resolveRoute('/auth/login?redirect=' + event.url.pathname));
 	}
 
 	// If the request is still here, just proceed as normally
@@ -41,8 +41,8 @@ export const authentication: Handle = async ({ event, resolve }) => {
 
 export const adminAuthorization: Handle = async ({ event, resolve }) => {
 	// Protect any routes that don't start with the unprotectedPrefix or are not the root path
-	if (event.url.pathname.startsWith('/admin') && !event.locals.user?.roles.includes('admin')) {
-		redirect(303, '/');
+	if (event.url.pathname.includes('/admin') && !event.locals.user?.roles.includes('admin')) {
+		redirect(303, i18n.resolveRoute('/')	);
 	}
 
 	// If the request is still here, just proceed as normally

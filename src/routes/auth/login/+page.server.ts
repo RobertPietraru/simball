@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { setError, superValidate } from 'sveltekit-superforms';
 import * as m from '$lib/paraglide/messages.js';
 import log from '$lib/logging.js';
-
+import { i18n } from '$lib/i18n';
 const schema = z.object({
 	email: z.string().max(320, m.login_email_too_long()),
 	password: z.string().max(640, m.login_password_too_long()),
@@ -14,9 +14,9 @@ const schema = z.object({
 
 export const load = async (event) => {
 	if (event.locals.user) {
-		return redirect(302, '/');
+		return redirect(302, i18n.resolveRoute('/'));
 	}
-	const redirectUrl = event.url.searchParams.get('redirect') ?? '/';
+	const redirectUrl = event.url.searchParams.get('redirect');
 	const form = await superValidate(zod(schema));
 	return { form, redirectUrl };
 };
@@ -49,7 +49,7 @@ export const actions = {
 		authService.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 		log.info(`Logged in | ${actionId}`);
 
-		const redirectUrl = event.url.searchParams.get('redirect') ?? '/';
-		return redirect(302, redirectUrl);
+		const redirectUrl = event.url.searchParams.get('redirect');
+		return redirect(302, redirectUrl ?? i18n.resolveRoute('/'));
 	},
 };

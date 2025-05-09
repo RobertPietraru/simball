@@ -7,7 +7,7 @@
 
 	import { superForm } from 'sveltekit-superforms';
 	import { Loader2 } from '@lucide/svelte';
-
+	import { i18n } from '$lib/i18n';
 	let { data } = $props();
 	const { form, message, errors } = superForm(data.form);
 	let isLoading = $state(false);
@@ -130,7 +130,7 @@
 					>
 				</div>
 			</div>
-			<Button variant="outline" type="button" href="/auth/login?redirect={data.redirectUrl}"
+			<Button variant="outline" type="button" href={i18n.resolveRoute(`/auth/login?redirect=${data.redirectUrl}`)}
 				>{m.register_alternative_button()}</Button
 			>
 		</div>
