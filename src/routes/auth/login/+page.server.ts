@@ -15,7 +15,7 @@ const schema = z.object({
 
 export const load = async (event) => {
 	if (event.locals.user) {
-		return redirect(302, i18n.resolveRoute('/'));
+		return redirect(302, '/');
 	}
 	const form = await superValidate(zod(schema));
 	return { form };
@@ -49,6 +49,6 @@ export const actions = {
 		authService.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 		log.info(`Logged in | ${actionId}`);
 
-		return redirect(302, i18n.resolveRoute('/'));
+		return redirect(302, '/');
 	},
 };

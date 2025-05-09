@@ -17,7 +17,7 @@ const schema = z.object({
 
 export const load = async (event) => {
 	if (event.locals.user) {
-		return redirect(302, i18n.resolveRoute('/'));
+		return redirect(302, '/');
 	}
 
 	const pathParams = new URL(event.url).searchParams;
@@ -61,6 +61,6 @@ export const actions = {
 
 		authService.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-		return redirect(302, i18n.resolveRoute('/'));
+		return redirect(302, '/');
 	},
 };
