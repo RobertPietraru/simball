@@ -71,5 +71,38 @@
 	"admin_breadcrumbs_admin": "Admin Panel",
 	"admin_breadcrumbs_users": "Users",
 	"admin_breadcrumbs_words": "Words",
-	"admin_breadcrumbs_sources": "Sources"
+	"admin_breadcrumbs_sources": "Sources",
+
+	"admin_users_id": "ID",
+	"admin_users_name": "Name",
+	"admin_users_email": "Email",
+	"admin_users_roles": "Roles",
+	"admin_users_created_at": "Created At",
+	"admin_users_roles_admin": "Admin",
+	"admin_users_roles_contributor": "Contributor",
+
+	"admin_users_invitations": "Invitations",
+	"admin_users_invitations_admin": "Admin Invitations",
+	"admin_users_invitations_contributor": "Contributor Invitations",
+	"admin_users_invitations_created_at": "Created At",
+	"admin_users_invitations_expires_at": "Expires At",
+	"admin_users_invitations_roles": "Roles",
+	"admin_users_invitations_delete": "Delete Invitation",
+
+	"admin_users_users_title": "Users",
+	"admin_users_admin_invitations_title": "Admin Invitations",
+	"admin_users_contributor_invitations_title": "Contributor Invitations",
+
+	"admin_users_users_delete_success": "User deleted successfully",
+	"admin_users_users_delete_error": "Failed to delete user",
+
+	"admin_users_invitations_create_success": "Invitation created successfully",
+	"admin_users_invitations_create_error": "Failed to create invitation",
+	"admin_users_invitations_delete_success": "Invitation deleted successfully",
+	"admin_users_invitations_delete_error": "Failed to delete invitation"
+
+
+
+
+
 }

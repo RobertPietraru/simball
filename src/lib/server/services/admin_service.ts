@@ -31,9 +31,19 @@ export class AdminService {
     async deleteInvitation(id: string) {
         await this.db.delete(table.invitation).where(eq(table.invitation.id, id));
     }
+
+    async deleteUser(id: string) {
+        await this.db.delete(table.users).where(eq(table.users.id, id));
+    }
+
+    async showAllUsers() {
+        return await this.db.select().from(table.users);
+    }
+
+    async showAllInvitations() {
+        return await this.db.select().from(table.invitation);
+    }
 }
-
-
 
 
 
