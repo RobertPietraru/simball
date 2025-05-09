@@ -73,6 +73,19 @@
 	"admin_breadcrumbs_words": "Words",
 	"admin_breadcrumbs_sources": "Sources",
 
+	"contributor_breadcrumbs_contributor": "Contributor Panel",
+	"contributor_breadcrumbs_words": "Words",
+	"contributor_breadcrumbs_sources": "Sources",
+	"contributor_breadcrumbs_users": "Users",
+
+	"contributor_panel_words": "Words",
+	"contributor_panel_sources": "Sources",
+	"contributor_panel_users": "Users",
+
+	"contributor_panel_words_description": "Manage dictionary words and definitions",
+	"contributor_panel_sources_description": "Manage word sources and references",
+	"contributor_panel_users_description": "Manage users and their permissions",
+
 	"admin_users_id": "ID",
 	"admin_users_name": "Name",
 	"admin_users_email": "Email",
