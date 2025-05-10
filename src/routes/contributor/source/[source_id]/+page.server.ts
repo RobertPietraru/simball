@@ -2,7 +2,7 @@ import { adminService } from "$lib/server/injection";
 import { error } from "@sveltejs/kit";
 
 export const load = async (event) => {
-    const source = await adminService.getSourceById(event.params.id);
+    const source = await adminService.getSourceById(event.params.source_id);
 
     if (!source) {
         error(404, 'Source not found');
@@ -22,15 +22,10 @@ export const actions = {
         if (!label || !links) {
             error(400, 'Bad request');
         }
-        await adminService.updateSource(event.params.id, label as string, description as string, links as string[]);
+        await adminService.updateSource(event.params.source_id, label as string, description as string, links as string[]);
     },
 
     delete: async (event) => {
-        const formData = await event.request.formData();
-        const id = formData.get('id');
-        if (!id) {
-            error(400, 'Bad request');
-        }
-        await adminService.deleteSource(id as string);
+        await adminService.deleteSource(event.params.source_id);
     },
 }
