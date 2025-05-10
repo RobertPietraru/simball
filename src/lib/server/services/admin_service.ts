@@ -35,6 +35,35 @@ export class AdminService {
     async showAllInvitations() {
         return await this.db.select().from(table.invitation).orderBy(desc(table.invitation.createdAt));
     }
+
+    async getSourceById(id: string) {
+        const source = await this.db.select().from(table.source).where(eq(table.source.id, id));
+        if (source.length === 0) {
+            return null;
+        }
+        return source[0];
+    }
+
+    async getSourceByLabel(label: string) {
+        return await this.db.select().from(table.source).where(eq(table.source.label, label));
+    }
+
+    async deleteSource(id: string) {
+        await this.db.delete(table.definition).where(eq(table.definition.sourceId, id));
+        await this.db.delete(table.source).where(eq(table.source.id, id));
+    }
+
+    async updateSource(id: string, label: string, description: string, links: string[]) {
+        await this.db.update(table.source).set({
+            label,
+            description,
+            links,
+        }).where(eq(table.source.id, id));
+    }
+
+    async getSources() {
+        return await this.db.select().from(table.source).orderBy(desc(table.source.createdAt));
+    }
 }
 
 

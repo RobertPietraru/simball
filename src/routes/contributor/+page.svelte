@@ -15,7 +15,7 @@
 	</a>
 
 	<a
-		href="/admin/sources"
+		href="/contributor/sources"
 		class="p-6 bg-card text-card-foreground rounded-lg border border-border hover:border-primary transition-colors"
 	>
 		<LibraryBig class="w-12 h-12 mb-4" />
