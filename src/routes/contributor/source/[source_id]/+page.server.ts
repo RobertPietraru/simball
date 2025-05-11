@@ -1,5 +1,5 @@
 import { adminService } from "$lib/server/injection";
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
     const source = await adminService.getSourceById(event.params.source_id);
@@ -27,5 +27,6 @@ export const actions = {
 
     delete: async (event) => {
         await adminService.deleteSource(event.params.source_id);
+        redirect(302, '/contributor/sources');
     },
 }

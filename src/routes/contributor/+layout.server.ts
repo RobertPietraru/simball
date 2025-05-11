@@ -33,6 +33,11 @@ export const load = async ({ locals, url, params }) => {
                 label: m.contributor_breadcrumbs_source_id(),
                 href: path
             })
+        } else if (section === 'create') {
+            crumbs.push({
+                label: m.contributor_breadcrumbs_create(),
+                href: path
+            })
         }
 
     }

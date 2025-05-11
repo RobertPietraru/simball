@@ -60,6 +60,13 @@ export class AdminService {
             links,
         }).where(eq(table.source.id, id));
     }
+    async createSource(label: string, description: string, links: string[]) {
+        await this.db.insert(table.source).values({
+            label,
+            description,
+            links,
+        });
+    }
 
     async getSources() {
         return await this.db.select().from(table.source).orderBy(desc(table.source.createdAt));

@@ -9,14 +9,14 @@
 		TableHeader,
 		TableRow
 	} from '$lib/components/ui/table';
-	import { Plus } from '@lucide/svelte';
-	import { Badge } from '$lib/components/ui/badge';
-	export let data;
+	import { Plus, Pencil } from '@lucide/svelte';
+	import { tryParseURL } from '$lib/utils.js';
+	const { data } = $props();
 </script>
 
 <div class="flex justify-between items-center mb-8">
 	<h1 class="text-3xl font-bold">{m.contributor_sources_title()}</h1>
-	<Button href="/contributor/source/new">
+	<Button href="/contributor/sources/create">
 		<Plus />
 		{m.contributor_sources_add()}
 	</Button>
@@ -38,16 +38,17 @@
 					<TableCell class="p-4">{source.label}</TableCell>
 					<TableCell class="p-4">{source.description}</TableCell>
 					<TableCell class="p-4">
-						<ul class="list-disc list-inside">
+						<ul class="list-disc list-inside space-x-2">
 							{#each source.links as link}
 								<Button variant="outline" size="sm" onclick={() => window.open(link, '_blank')}>
-									{new URL(link).hostname}
+									{tryParseURL(link)?.hostname ?? link}
 								</Button>
 							{/each}
 						</ul>
 					</TableCell>
 					<TableCell class="p-4">
 						<Button href="/contributor/source/{source.id}" variant="outline" size="sm">
+							<Pencil />
 							{m.edit_source()}
 						</Button>
 					</TableCell>

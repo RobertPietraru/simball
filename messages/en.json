@@ -133,7 +133,12 @@
 	"contributor_sources_save": "Save",
 
 	"contributor_breadcrumbs_source": "Source",
-	"contributor_breadcrumbs_source_id": "Edit Source"
+	"contributor_breadcrumbs_source_id": "Edit Source",
+	"contributor_source_save_error": "Failed to save source",
+	"contributor_source_save_success": "Source saved successfully",
+	"contributor_source_delete_error": "Failed to delete source",
+	"contributor_source_delete_success": "Source deleted successfully",
+	"contributor_breadcrumbs_create": "Create"
 
 
 }
