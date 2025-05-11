@@ -18,7 +18,7 @@
 		</a>
 
 		<a
-			href="/admin/words"
+			href="/contributor/words"
 			class="p-6 bg-card text-card-foreground rounded-lg border border-border hover:border-primary transition-colors"
 		>
 			<BookA class="w-12 h-12 mb-4" />

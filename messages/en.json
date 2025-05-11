@@ -138,7 +138,21 @@
 	"contributor_source_save_success": "Source saved successfully",
 	"contributor_source_delete_error": "Failed to delete source",
 	"contributor_source_delete_success": "Source deleted successfully",
-	"contributor_breadcrumbs_create": "Create"
+	"contributor_breadcrumbs_create": "Create",
+
+
+	"contributor_word_add": "Add",
+	"contributor_word_remove": "Remove",
+	"contributor_word_save": "Save",
+	"contributor_word_delete": "Delete",
+	"contributor_words_title": "Words",
+	"contributor_words_description": "Manage dictionary words and definitions",
+	"contributor_words_text": "Text",
+	"contributor_words_add": "Add",
+	"contributor_words_createdAt": "Created At",
+	"contributor_words_remove": "Remove",
+	"edit_word": "Edit Word",
+	"contributor_words_save": "Save"
 
 
 }

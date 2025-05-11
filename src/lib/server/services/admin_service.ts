@@ -1,6 +1,6 @@
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import * as table from '$lib/server/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import { eq, desc, like, count } from 'drizzle-orm';
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
@@ -70,6 +70,20 @@ export class AdminService {
 
     async getSources() {
         return await this.db.select().from(table.source).orderBy(desc(table.source.createdAt));
+    }
+
+    async getWords(params: {
+        search: string;
+        page: number;
+        limit: number;
+    }) {
+        const offset = (params.page - 1) * params.limit;
+        const counted = await this.db.select({ count: count() }).from(table.word).where(like(table.word.text, `%${params.search}%`));
+        const words = await this.db.select().from(table.word).orderBy(desc(table.word.createdAt)).limit(params.limit).offset(offset);
+        return {
+            words,
+            total: counted[0].count
+        };
     }
 }
 
