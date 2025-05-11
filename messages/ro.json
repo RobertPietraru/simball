@@ -8,26 +8,132 @@
 	"sign_in_button": "Conectare",
 	"sign_up_button": "Înregistrare",
 	"auth_quote_content": "Un instrument indispensabil pentru înțelegerea simbolurilor și semnificațiilor din literatura română.",
-	"auth_quote_author": "Un utilizator anonim care cu siguranță există",
+	"auth_quote_author": "Utilizator anonim care există cu siguranță",
+
+
 	"login_title": "Conectare",
-	"login_description": "Introdu emailul și parola pentru a accesa dicționarul",
+	"login_description": "Introdu email-ul și parola pentru a accesa dicționarul",
 	"login_email_placeholder": "email@exemplu.com",
-	"login_password_placeholder": "Parola",
+	"login_password_placeholder": "Parolă",
 	"login_submit_button": "Conectare",
 	"login_alternative_text": "Sau creează un cont nou",
 	"login_alternative_button": "Creează un cont nou",
-	"login_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și cu Politica de Confidențialitate",
+	"login_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și Politica de Confidențialitate",
+
+
+	"login_wrong_credentials": "Email sau parolă greșită",
+	"login_email_too_long": "Email-ul trebuie să aibă maximum 320 de caractere",
+	"login_password_too_long": "Parola trebuie să aibă maximum 640 de caractere",
 
 
 	"register_title": "Creează un cont nou",
 	"register_description": "Completează detaliile pentru a crea un cont nou",
 	"register_name_placeholder": "Nume",
 	"register_email_placeholder": "email@exemplu.com",
-	"register_password_placeholder": "Parola",
+	"register_password_placeholder": "Parolă",
 	"register_submit_button": "Creează cont",
 	"register_alternative_text": "Sau conectează-te cu un cont existent",
 	"register_invitation_placeholder": "Cod de invitație",
 	"register_invitation_error": "Cod de invitație invalid",
 	"register_alternative_button": "Conectare",
-	"register_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și cu Politica de Confidențialitate"
+	"register_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și Politica de Confidențialitate",
+
+
+
+	"register_email_already_exists": "Email-ul există deja",
+	"register_email_too_long": "Email-ul trebuie să aibă maximum 320 de caractere",
+	"register_password_too_long": "Parola trebuie să aibă maximum 640 de caractere",
+	"register_name_too_long": "Numele trebuie să aibă maximum 120 de caractere",
+	"register_invitation_too_long": "Codul de invitație trebuie să aibă maximum 36 de caractere",
+	"register_email_required": "Email-ul este obligatoriu",
+	"register_password_required": "Parola este obligatorie",
+	"register_name_required": "Numele este obligatoriu",
+	"register_invitation_required": "Codul de invitație este obligatoriu",
+
+
+	"role_admin_account": "Cont Administrator",
+	"role_contributor_account": "Cont Contributor",
+	"sign_out_button": "Deconectare",
+	"contributor_panel_button": "Panou Contributor",
+	"admin_panel_button": "Panou Administrator",
+
+
+	"sign_out_error": "Deconectare eșuată",
+
+	"admin_panel_users": "Utilizatori",
+	"admin_panel_words": "Cuvinte",
+	"admin_panel_sources": "Surse",
+	"admin_panel_users_description": "Gestionează utilizatorii și permisiunile lor",
+	"admin_panel_words_description": "Gestionează cuvintele și definițiile din dicționar",
+	"admin_panel_sources_description": "Gestionează sursele și referințele cuvintelor",
+	"admin_panel_manage_users": "Panou Administrator",
+
+	"admin_breadcrumbs_admin": "Panou Administrator",
+	"admin_breadcrumbs_users": "Utilizatori",
+	"admin_breadcrumbs_words": "Cuvinte",
+	"admin_breadcrumbs_sources": "Surse",
+
+	"contributor_breadcrumbs_contributor": "Panou Contributor",
+	"contributor_breadcrumbs_words": "Cuvinte",
+	"contributor_breadcrumbs_sources": "Surse",
+	"contributor_breadcrumbs_users": "Utilizatori",
+
+	"contributor_panel_words": "Cuvinte",
+	"contributor_panel_sources": "Surse",
+	"contributor_panel_users": "Utilizatori",
+
+	"contributor_panel_words_description": "Gestionează cuvintele și definițiile din dicționar",
+	"contributor_panel_sources_description": "Gestionează sursele și referințele cuvintelor",
+	"contributor_panel_users_description": "Gestionează utilizatorii și permisiunile lor",
+
+	"admin_users_id": "ID",
+	"admin_users_name": "Nume",
+	"admin_users_email": "Email",
+	"admin_users_roles": "Roluri",
+	"admin_users_created_at": "Creat la",
+	"admin_users_roles_admin": "Administrator",
+	"admin_users_roles_contributor": "Contributor",
+
+	"admin_users_invitations": "Invitații",
+	"admin_users_invitations_admin": "Invitații Administrator",
+	"admin_users_invitations_contributor": "Invitații Contributor",
+	"admin_users_invitations_created_at": "Creat la",
+	"admin_users_invitations_expires_at": "Expiră la",
+	"admin_users_invitations_roles": "Roluri",
+	"admin_users_invitations_delete": "Șterge Invitația",
+
+	"admin_users_users_title": "Utilizatori",
+	"admin_users_admin_invitations_title": "Invitații Administrator",
+	"admin_users_contributor_invitations_title": "Invitații Contributor",
+
+	"admin_users_users_delete_success": "Utilizator șters cu succes",
+	"admin_users_users_delete_error": "Ștergerea utilizatorului a eșuat",
+
+	"admin_users_invitations_create_success": "Invitație creată cu succes",
+	"admin_users_invitations_create_error": "Crearea invitației a eșuat",
+	"admin_users_invitations_delete_success": "Invitație ștearsă cu succes",
+	"admin_users_invitations_delete_error": "Ștergerea invitației a eșuat",
+
+	"edit_source": "Editează Sursa",
+	"admin_users_invitations_copy_success": "Invitație copiată în clipboard",
+	"source_label": "Etichetă",
+	"source_description": "Descriere",
+	"source_links": "Linkuri",
+	"add_link_placeholder": "Adaugă un link",
+	"contributor_source_add": "Adaugă",
+	"contributor_source_remove": "Șterge",
+	"contributor_source_save": "Salvează",
+	"contributor_source_delete": "Șterge",
+	"contributor_sources_title": "Surse",
+	"contributor_sources_description": "Gestionează sursele și referințele cuvintelor",
+	"contributor_sources_label": "Etichetă",
+	"contributor_sources_links": "Linkuri",
+	"contributor_sources_add": "Adaugă",
+	"contributor_sources_remove": "Șterge",
+	"contributor_sources_save": "Salvează",
+
+	"contributor_breadcrumbs_source": "Sursă",
+	"contributor_breadcrumbs_source_id": "Editează Sursa"
+
+
 }

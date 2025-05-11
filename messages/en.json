@@ -58,10 +58,101 @@
 	"admin_panel_button": "Admin Panel",
 	
 
-	"sign_out_error": "Failed to sign out"
+	"sign_out_error": "Failed to sign out",
 	
+	"admin_panel_users": "Users",
+	"admin_panel_words": "Words",
+	"admin_panel_sources": "Sources",
+	"admin_panel_users_description": "Manage users and their permissions",
+	"admin_panel_words_description": "Manage dictionary words and definitions",
+	"admin_panel_sources_description": "Manage word sources and references",
+	"admin_panel_manage_users": "Admin Panel",
+
+	"admin_breadcrumbs_admin": "Admin Panel",
+	"admin_breadcrumbs_users": "Users",
+	"admin_breadcrumbs_words": "Words",
+	"admin_breadcrumbs_sources": "Sources",
+
+	"contributor_breadcrumbs_contributor": "Contributor Panel",
+	"contributor_breadcrumbs_words": "Words",
+	"contributor_breadcrumbs_sources": "Sources",
+	"contributor_breadcrumbs_users": "Users",
+
+	"contributor_panel_words": "Words",
+	"contributor_panel_sources": "Sources",
+	"contributor_panel_users": "Users",
+
+	"contributor_panel_words_description": "Manage dictionary words and definitions",
+	"contributor_panel_sources_description": "Manage word sources and references",
+	"contributor_panel_users_description": "Manage users and their permissions",
+
+	"admin_users_id": "ID",
+	"admin_users_name": "Name",
+	"admin_users_email": "Email",
+	"admin_users_roles": "Roles",
+	"admin_users_created_at": "Created At",
+	"admin_users_roles_admin": "Admin",
+	"admin_users_roles_contributor": "Contributor",
+
+	"admin_users_invitations": "Invitations",
+	"admin_users_invitations_admin": "Admin Invitations",
+	"admin_users_invitations_contributor": "Contributor Invitations",
+	"admin_users_invitations_created_at": "Created At",
+	"admin_users_invitations_expires_at": "Expires At",
+	"admin_users_invitations_roles": "Roles",
+	"admin_users_invitations_delete": "Delete Invitation",
+
+	"admin_users_users_title": "Users",
+	"admin_users_admin_invitations_title": "Admin Invitations",
+	"admin_users_contributor_invitations_title": "Contributor Invitations",
+
+	"admin_users_users_delete_success": "User deleted successfully",
+	"admin_users_users_delete_error": "Failed to delete user",
+
+	"admin_users_invitations_create_success": "Invitation created successfully",
+	"admin_users_invitations_create_error": "Failed to create invitation",
+	"admin_users_invitations_delete_success": "Invitation deleted successfully",
+	"admin_users_invitations_delete_error": "Failed to delete invitation",
+
+	"edit_source": "Edit Source",
+	"admin_users_invitations_copy_success": "Invitation copied to clipboard",
+	"source_label": "Label",
+	"source_description": "Description",
+	"source_links": "Links",
+	"add_link_placeholder": "Add a link",
+	"contributor_source_add": "Add",
+	"contributor_source_remove": "Remove",
+	"contributor_source_save": "Save",
+	"contributor_source_delete": "Delete",
+	"contributor_sources_title": "Sources",
+	"contributor_sources_description": "Manage word sources and references",
+	"contributor_sources_label": "Label",
+	"contributor_sources_links": "Links",
+	"contributor_sources_add": "Add",
+	"contributor_sources_remove": "Remove",
+	"contributor_sources_save": "Save",
+
+	"contributor_breadcrumbs_source": "Source",
+	"contributor_breadcrumbs_source_id": "Edit Source",
+	"contributor_source_save_error": "Failed to save source",
+	"contributor_source_save_success": "Source saved successfully",
+	"contributor_source_delete_error": "Failed to delete source",
+	"contributor_source_delete_success": "Source deleted successfully",
+	"contributor_breadcrumbs_create": "Create",
 
 
+	"contributor_word_add": "Add",
+	"contributor_word_remove": "Remove",
+	"contributor_word_save": "Save",
+	"contributor_word_delete": "Delete",
+	"contributor_words_title": "Words",
+	"contributor_words_description": "Manage dictionary words and definitions",
+	"contributor_words_text": "Text",
+	"contributor_words_add": "Add",
+	"contributor_words_createdAt": "Created At",
+	"contributor_words_remove": "Remove",
+	"edit_word": "Edit Word",
+	"contributor_words_save": "Save"
 
 
 }

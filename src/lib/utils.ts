@@ -13,6 +13,13 @@ export function tryParseFloat(value: string): number | null {
         return null;
     }
 }
+export function tryParseURL(value: string): URL | null {
+    try {
+        return new URL(value);
+    } catch (error) {
+        return null;
+    }
+}
 
 export function tryParseInt(value: string): number | null {
     try {
