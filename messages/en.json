@@ -114,10 +114,26 @@
 	"admin_users_invitations_delete_success": "Invitation deleted successfully",
 	"admin_users_invitations_delete_error": "Failed to delete invitation",
 
-	"admin_users_invitations_copy_success": "Invitation copied to clipboard"
+	"edit_source": "Edit Source",
+	"admin_users_invitations_copy_success": "Invitation copied to clipboard",
+	"source_label": "Label",
+	"source_description": "Description",
+	"source_links": "Links",
+	"add_link_placeholder": "Add a link",
+	"contributor_source_add": "Add",
+	"contributor_source_remove": "Remove",
+	"contributor_source_save": "Save",
+	"contributor_source_delete": "Delete",
+	"contributor_sources_title": "Sources",
+	"contributor_sources_description": "Manage word sources and references",
+	"contributor_sources_label": "Label",
+	"contributor_sources_links": "Links",
+	"contributor_sources_add": "Add",
+	"contributor_sources_remove": "Remove",
+	"contributor_sources_save": "Save",
 
-
-
+	"contributor_breadcrumbs_source": "Source",
+	"contributor_breadcrumbs_source_id": "Edit Source"
 
 
 }

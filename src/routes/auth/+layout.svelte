@@ -46,7 +46,7 @@
 				background-image: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%),
 					url(/images/book.jpg);"
 		></div>
-		<a href={i18n.resolveRoute('/')} class="relative z-20 flex items-center text-lg font-medium">{m.title()}</a>
+		<a href="/" class="relative z-20 flex items-center text-lg font-medium">{m.title()}</a>
 		<div class="relative z-20 mt-auto">
 			<blockquote class="space-y-2">
 				<p class="text-lg">

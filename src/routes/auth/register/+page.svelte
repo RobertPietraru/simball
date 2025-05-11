@@ -130,7 +130,7 @@
 					>
 				</div>
 			</div>
-			<Button variant="outline" type="button" href={i18n.resolveRoute(`/auth/login?redirect=${data.redirectUrl}`)}
+			<Button variant="outline" type="button" href="/auth/login?redirect={data.redirectUrl}"
 				>{m.register_alternative_button()}</Button
 			>
 		</div>

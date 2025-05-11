@@ -130,7 +130,7 @@
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 						{#if !data.user}
-							<Button href={i18n.resolveRoute('/auth/login')} variant="outline"
+							<Button href="/auth/login" variant="outline"
 								>{m.sign_in_button()}</Button
 							>
 						{:else}
