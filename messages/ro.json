@@ -10,7 +10,6 @@
 	"auth_quote_content": "Un instrument indispensabil pentru înțelegerea simbolurilor și semnificațiilor din literatura română.",
 	"auth_quote_author": "Utilizator anonim care există cu siguranță",
 
-
 	"login_title": "Conectare",
 	"login_description": "Introdu email-ul și parola pentru a accesa dicționarul",
 	"login_email_placeholder": "email@exemplu.com",
@@ -20,11 +19,9 @@
 	"login_alternative_button": "Creează un cont nou",
 	"login_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și Politica de Confidențialitate",
 
-
 	"login_wrong_credentials": "Email sau parolă greșită",
 	"login_email_too_long": "Email-ul trebuie să aibă maximum 320 de caractere",
 	"login_password_too_long": "Parola trebuie să aibă maximum 640 de caractere",
-
 
 	"register_title": "Creează un cont nou",
 	"register_description": "Completează detaliile pentru a crea un cont nou",
@@ -38,8 +35,6 @@
 	"register_alternative_button": "Conectare",
 	"register_terms_and_conditions": "Continuând, ești de acord cu Termenii și Condițiile și Politica de Confidențialitate",
 
-
-
 	"register_email_already_exists": "Email-ul există deja",
 	"register_email_too_long": "Email-ul trebuie să aibă maximum 320 de caractere",
 	"register_password_too_long": "Parola trebuie să aibă maximum 640 de caractere",
@@ -50,20 +45,18 @@
 	"register_name_required": "Numele este obligatoriu",
 	"register_invitation_required": "Codul de invitație este obligatoriu",
 
-
 	"role_admin_account": "Cont Administrator",
 	"role_contributor_account": "Cont Contributor",
 	"sign_out_button": "Deconectare",
 	"contributor_panel_button": "Panou Contributor",
 	"admin_panel_button": "Panou Administrator",
 
-
 	"sign_out_error": "Deconectare eșuată",
 
 	"admin_panel_users": "Utilizatori",
 	"admin_panel_words": "Cuvinte",
 	"admin_panel_sources": "Surse",
-	"admin_panel_users_description": "Gestionează utilizatorii și permisiunile lor",
+	"admin_panel_users_description": "Gestionează utilizatorii și permisiunile",
 	"admin_panel_words_description": "Gestionează cuvintele și definițiile din dicționar",
 	"admin_panel_sources_description": "Gestionează sursele și referințele cuvintelor",
 	"admin_panel_manage_users": "Panou Administrator",
@@ -84,7 +77,7 @@
 
 	"contributor_panel_words_description": "Gestionează cuvintele și definițiile din dicționar",
 	"contributor_panel_sources_description": "Gestionează sursele și referințele cuvintelor",
-	"contributor_panel_users_description": "Gestionează utilizatorii și permisiunile lor",
+	"contributor_panel_users_description": "Gestionează utilizatorii și permisiunile",
 
 	"admin_users_id": "ID",
 	"admin_users_name": "Nume",
@@ -118,7 +111,7 @@
 	"admin_users_invitations_copy_success": "Invitație copiată în clipboard",
 	"source_label": "Etichetă",
 	"source_description": "Descriere",
-	"source_links": "Linkuri",
+	"source_links": "Link-uri",
 	"add_link_placeholder": "Adaugă un link",
 	"contributor_source_add": "Adaugă",
 	"contributor_source_remove": "Șterge",
@@ -127,13 +120,30 @@
 	"contributor_sources_title": "Surse",
 	"contributor_sources_description": "Gestionează sursele și referințele cuvintelor",
 	"contributor_sources_label": "Etichetă",
-	"contributor_sources_links": "Linkuri",
+	"contributor_sources_links": "Link-uri",
 	"contributor_sources_add": "Adaugă",
 	"contributor_sources_remove": "Șterge",
 	"contributor_sources_save": "Salvează",
 
 	"contributor_breadcrumbs_source": "Sursă",
-	"contributor_breadcrumbs_source_id": "Editează Sursa"
+	"contributor_breadcrumbs_source_id": "Editează Sursa",
+	"contributor_source_save_error": "Salvarea sursei a eșuat",
+	"contributor_source_save_success": "Sursă salvată cu succes",
+	"contributor_source_delete_error": "Ștergerea sursei a eșuat",
+	"contributor_source_delete_success": "Sursă ștearsă cu succes",
+	"contributor_breadcrumbs_create": "Creează",
 
+	"contributor_word_add": "Adaugă",
+	"contributor_word_remove": "Șterge",
+	"contributor_word_save": "Salvează",
+	"contributor_word_delete": "Șterge",
+	"contributor_words_title": "Cuvinte",
+	"contributor_words_description": "Gestionează cuvintele și definițiile din dicționar",
+	"contributor_words_text": "Text",
+	"contributor_words_add": "Adaugă",
+	"contributor_words_createdAt": "Creat la",
+	"contributor_words_remove": "Șterge",
+	"edit_word": "Editează Cuvântul",
+	"contributor_words_save": "Salvează"
 
 }

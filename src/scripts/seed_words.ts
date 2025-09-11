@@ -1,5 +1,6 @@
 import { drizzle, PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { hash } from '@node-rs/argon2';
+import words from './words.json';
 import postgres from 'postgres';
 import * as tables from '$lib/server/db/schema';
 import fs from 'fs';
@@ -10,9 +11,7 @@ export const db = drizzle(client);
 
 
 async function seeding(db: PostgresJsDatabase) {
-    const outputJson = fs.readFileSync('output.json', 'utf8');
-    const words = JSON.parse(outputJson);
-    console.log(words);
+    const outputJson = words;
     /// empty the table
     await db.delete(tables.word);
     await db.delete(tables.source);
