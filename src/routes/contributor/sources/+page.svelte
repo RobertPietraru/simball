@@ -47,7 +47,7 @@
 						</ul>
 					</TableCell>
 					<TableCell class="p-4">
-						<Button href="/contributor/source/{source.id}" variant="outline" size="sm">
+						<Button href="/contributor/sources/{source.id}" variant="outline" size="sm">
 							<Pencil />
 							{m.edit_source()}
 						</Button>
