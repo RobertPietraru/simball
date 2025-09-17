@@ -1,7 +1,8 @@
-import { adminService } from "$lib/server/injection";
 import { error, redirect } from "@sveltejs/kit";
+import { injection } from '$lib/server/injection';
 
 export const load = async (event) => {
+    const { adminService } = injection();
     const source = await adminService.getSourceById(event.params.source_id);
     if (!source) error(404, 'Source not found');
     return {
@@ -11,6 +12,7 @@ export const load = async (event) => {
 
 export const actions = {
     save: async (event) => {
+        const { adminService } = injection();
         const formData = await event.request.formData();
         const label = formData.get('label');
         const description = formData.get('description');
@@ -22,6 +24,7 @@ export const actions = {
     },
 
     delete: async (event) => {
+        const { adminService } = injection();
         await adminService.deleteSource(event.params.source_id);
         redirect(302, '/contributor/sources');
     },

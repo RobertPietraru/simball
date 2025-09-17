@@ -1,7 +1,8 @@
-import { adminService } from "$lib/server/injection";
+import { injection } from '$lib/server/injection';
 import { error } from "@sveltejs/kit";
 
 export const load = async ({ locals }) => {
+    const { adminService } = injection();
     const users = await adminService.showAllUsers();
     const invitations = await adminService.showAllInvitations();
     return {
@@ -13,6 +14,7 @@ export const load = async ({ locals }) => {
 
 export const actions = {
     deleteUser: async ({ request }) => {
+        const { adminService } = injection();
         const formData = await request.formData();
         const id = formData.get('id');
         await adminService.deleteUser(id as string);
@@ -20,6 +22,7 @@ export const actions = {
     },
 
     createInvitation: async ({ request }) => {
+        const { adminService } = injection();
         const formData = await request.formData();
         const role = formData.get('role')?.toString();
         if (!role) {
@@ -30,6 +33,7 @@ export const actions = {
     },
 
     deleteInvitation: async ({ request }) => {
+        const { adminService } = injection();
         const formData = await request.formData();
         const id = formData.get('id');
         await adminService.deleteInvitation(id as string);

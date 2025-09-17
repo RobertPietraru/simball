@@ -1,6 +1,6 @@
 import { i18n } from "$lib/i18n.js";
 import log from "$lib/logging.js";
-import { adminService } from "$lib/server/injection";
+import { injection } from '$lib/server/injection';
 import { error, redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
@@ -9,6 +9,7 @@ export const load = async (event) => {
 export const actions = {
     create: async (event) => {
         log.info('Saving source');
+        const { adminService } = injection();
         const formData = await event.request.formData();
         const label = formData.get('label');
         const description = formData.get('description');

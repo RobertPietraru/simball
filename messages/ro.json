@@ -144,6 +144,8 @@
 	"contributor_words_createdAt": "Creat la",
 	"contributor_words_remove": "Șterge",
 	"edit_word": "Editează Cuvântul",
-	"contributor_words_save": "Salvează"
+	"contributor_words_save": "Salvează",
+	"landing_page_search_in_definition_button": "Caută în definiții",
+	"landing_page_search_in_word_button": "Caută în cuvinte"
 
 }

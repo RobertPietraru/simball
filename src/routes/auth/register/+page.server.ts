@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
-import { authService } from '$lib/server/injection';
 import { zod } from 'sveltekit-superforms/adapters';
+import { injection } from '$lib/server/injection';
 import { z } from 'zod';
 import { setError, superValidate } from 'sveltekit-superforms';
 import { isValidUUID } from '$lib/utils';
@@ -30,6 +30,7 @@ export const load = async (event) => {
 
 export const actions = {
 	default: async (event) => {
+		const { authService } = injection();
 
 		const form = await superValidate(event.request, zod(schema));
 		if (!form.valid) {

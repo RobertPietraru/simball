@@ -1,10 +1,10 @@
 import { i18n } from '$lib/i18n';
+import { injection } from '$lib/server/injection';
 import { redirect, type Handle, } from '@sveltejs/kit';
-import { authService } from '$lib/server/injection';
 import { sequence } from '@sveltejs/kit/hooks';
-import { languageTag } from '$lib/paraglide/runtime';
 const handleParaglide: Handle = i18n.handle();
 const handleAuth: Handle = async ({ event, resolve }) => {
+	const { authService } = injection();
 	const sessionToken = event.cookies.get(authService.sessionCookieName);
 	if (!sessionToken) {
 		event.locals.user = null;

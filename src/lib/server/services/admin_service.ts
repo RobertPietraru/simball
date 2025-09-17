@@ -1,6 +1,6 @@
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import * as table from '$lib/server/db/schema';
-import { eq, desc, like, count } from 'drizzle-orm';
+import { eq, desc, like, count, ilike, or, isNotNull, and } from 'drizzle-orm';
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
@@ -78,10 +78,46 @@ export class AdminService {
         limit: number;
     }) {
         const offset = (params.page - 1) * params.limit;
-        const counted = await this.db.select({ count: count() }).from(table.word).where(like(table.word.text, `%${params.search}%`));
+        const counted = await this.db.select({ count: count() }).from(table.word).where(or(ilike(table.word.text, `%${params.search}%`), isNotNull(table.definition.explanation), ilike(table.definition.explanation, `%${params.search}%`)));
         const words = await this.db.select().from(table.word).orderBy(desc(table.word.createdAt)).limit(params.limit).offset(offset);
         return {
             words,
+            total: counted[0].count
+        };
+    }
+    async searchWords(params: {
+        search: string;
+        searchInDefinition: boolean;
+        searchInWord: boolean;
+        page: number;
+        limit: number;
+    }) {
+        const offset = (params.page - 1) * params.limit;
+        const counted = await this.db
+            .select({ count: count() })
+            .from(table.word)
+            .leftJoin(table.definition, eq(table.word.id, table.definition.wordId))
+            .where(or(params.searchInWord ? ilike(table.word.text, `%${params.search}%`) : undefined, params.searchInDefinition ? and(isNotNull(table.definition.explanation), ilike(table.definition.explanation, `%${params.search}%`)) : undefined));
+
+        let words = await this.db
+            .select({
+                id: table.word.id,
+                text: table.word.text,
+                createdAt: table.word.createdAt,
+                definition: table.definition.explanation
+            })
+            .from(table.word)
+            .orderBy(desc(table.word.createdAt))
+            .where(or(params.searchInWord ? ilike(table.word.text, `%${params.search}%`) : undefined, params.searchInDefinition ? and(isNotNull(table.definition.explanation), ilike(table.definition.explanation, `%${params.search}%`)) : undefined))
+            .leftJoin(table.definition, eq(table.word.id, table.definition.wordId))
+            .limit(params.limit)
+            .offset(offset);
+
+        return {
+            words: words.map(word => ({
+                ...word,
+                definition: !Boolean(word.definition) ? 'Fără definiție' : word.definition!.substring(0, 30) + '...'
+            })),
             total: counted[0].count
         };
     }

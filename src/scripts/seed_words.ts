@@ -1,9 +1,7 @@
 import { drizzle, PostgresJsDatabase } from 'drizzle-orm/postgres-js';
-import { hash } from '@node-rs/argon2';
 import words from './words.json';
 import postgres from 'postgres';
 import * as tables from '$lib/server/db/schema';
-import fs from 'fs';
 if (!process.env.POSTGRES_URL) throw new Error('POSTGRES_URL is not set');
 const client = postgres(process.env.POSTGRES_URL, { prepare: false });
 export const db = drizzle(client);
@@ -11,7 +9,6 @@ export const db = drizzle(client);
 
 
 async function seeding(db: PostgresJsDatabase) {
-    const outputJson = words;
     /// empty the table
     await db.delete(tables.word);
     await db.delete(tables.source);
