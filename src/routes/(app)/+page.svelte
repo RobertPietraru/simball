@@ -9,7 +9,7 @@
 	<div class="w-full max-w-[584px] space-y-8">
 		<h1 class="text-4xl font-bold text-center mb-8">{m.landing_page_headline()}</h1>
 		
-		<form class="relative" method="GET" action="/search">
+		<form class="relative" method="GET" action="/words">
 			<div class="flex items-center border rounded-full px-6 py-3 shadow-sm hover:shadow-md focus-within:shadow-md">
                 <Search class="h-5 w-5 text-muted-foreground" />
 				<input 

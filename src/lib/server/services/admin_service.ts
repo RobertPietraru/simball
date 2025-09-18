@@ -5,6 +5,27 @@ import { eq, desc, like, count, ilike, or, isNotNull, and } from 'drizzle-orm';
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
 export class AdminService {
+    async getWordById(id: string) {
+        const word = await this.db.select().from(table.word).where(eq(table.word.id, id));
+        if (word.length === 0) {
+            return null;
+        }
+        const definitions = await this.db.select().from(table.definition).where(eq(table.definition.wordId, word[0].id)).leftJoin(table.source, eq(table.definition.sourceId, table.source.id));
+        if (definitions.length === 0) {
+            return null;
+        }
+        return {
+            ...word[0],
+            definitions: definitions.map(definition => ({
+                text: definition.definition.explanation,
+                source: definition.source ? {
+                    id: definition.source.id,
+                    label: definition.source.label,
+                    links: definition.source.links,
+                } : null,
+            })),
+        };
+    }
     private db: PostgresJsDatabase;
     constructor(db: PostgresJsDatabase) {
         this.db = db;

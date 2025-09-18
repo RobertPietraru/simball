@@ -1,30 +1,21 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import * as m from '$lib/paraglide/messages';
-	import { Input } from '$lib/components/ui/input';
-	import {
-		Table,
-		TableBody,
-		TableCell,
-		TableHead,
-		TableHeader,
-		TableRow
-	} from '$lib/components/ui/table';
-	import { Search } from '@lucide/svelte';
-	import { localeDate, withSearchParameters } from '$lib/utils.js';
 	import { languageTag } from '$lib/paraglide/runtime';
+	import { Search } from '@lucide/svelte';
+	import * as Table from '$lib/components/ui/table';
+	import { Input } from '$lib/components/ui/input';
+	import { Button } from '$lib/components/ui/button';
+	import { withSearchParameters } from '$lib/utils';
 	import { page } from '$app/state';
-	import { i18n } from '$lib/i18n.js';
 	import { goto } from '$app/navigation';
-	let searchInDefinition = $derived(
-		(page.url.searchParams.get('searchInDefinition') || 'false') === 'true'
-	);
+	import * as m from '$lib/paraglide/messages';
 	const { data } = $props();
-	let searchInWord = $derived((page.url.searchParams.get('searchInWord') || 'true') === 'true');
-	let search = $state(data.search || '');
+	let searchInDefinition = $derived(data.searchInDefinition);
+	let search = $state(data.search);
 	$effect(() => {
 		search = data.search;
 	});
+
+
 </script>
 
 <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
@@ -46,8 +37,7 @@
 						bind:value={search}
 						onkeydown={(e) => {
 							if (e.key === 'Enter') {
-								const url = withSearchParameters(page.url, 'search', search);
-								goto(url.toString(), { replaceState: true });
+								goto(withSearchPara, { replaceState: true });
 							}
 						}}
 						class="w-full pl-10 pr-4 py-2 "
@@ -60,33 +50,15 @@
 					class={searchInDefinition
 						? 'bg-primary text-primary-foreground'
 						: 'bg-secondary text-secondary-foreground'}
-					href={withSearchParameters(
-						page.url,
-						'searchInDefinition',
-						searchInDefinition ? 'false' : 'true'
-					).toString()}
+					href={toggleSearchInDefinition()}
 				>
 					{m.landing_page_search_in_definition_button()}
 				</Button>
-				<Button
-					type="button"
-					variant={searchInWord ? 'default' : 'outline'}
-					class={searchInWord
-						? 'bg-primary text-primary-foreground'
-						: 'bg-secondary text-secondary-foreground'}
-					href={withSearchParameters(
-						page.url,
-						'searchInWord',
-						searchInWord ? 'false' : 'true'
-					).toString()}
-				>
-					{m.landing_page_search_in_word_button()}
-				</Button>
 
-				<Button  variant="default" onclick={() => {
-					const url = withSearchParameters(page.url, 'search', data.search);
-					goto(url.toString(), { replaceState: true });
-				}}>
+				<Button
+					variant="default"
+					href={searchWithFilter()}
+				>
 					{m.landing_page_search_button()}</Button
 				>
 			</div>
@@ -95,26 +67,27 @@
 
 	{#if data.words.length > 0}
 		<div class="bg-card rounded-lg border shadow-sm overflow-hidden">
-			<Table>
-				<TableHeader>
-					<TableRow>
-						<TableHead class="w-[300px]">Cuvânt</TableHead>
-						<TableHead>Definiție</TableHead>
-						<TableHead class="w-[180px]">Data adăugării</TableHead>
-					</TableRow>
-				</TableHeader>
-				<TableBody>
+			<Table.Root>
+				<Table.Header>
+					<Table.Row>
+						<Table.Head>Cuvânt</Table.Head>
+						<Table.Head>Definiție</Table.Head>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
 					{#each data.words as word}
-						<TableRow>
-							<TableCell class="font-medium">{word.text}</TableCell>
-							<TableCell class="text-sm text-muted-foreground">
+						<Table.Row
+							onclick={() => goto(`/words/${word.id}?${page.url.searchParams.toString()}`)}
+							class="cursor-pointer"
+						>
+							<Table.Cell class="font-medium">{word.text}</Table.Cell>
+							<Table.Cell class="text-sm text-muted-foreground">
 								{word.definition || 'Fără definiție'}
-							</TableCell>
-							<TableCell>{localeDate(word.createdAt, languageTag())}</TableCell>
-						</TableRow>
+							</Table.Cell>
+						</Table.Row>
 					{/each}
-				</TableBody>
-			</Table>
+				</Table.Body>
+			</Table.Root>
 		</div>
 
 		<div class="flex items-center justify-center gap-4">
