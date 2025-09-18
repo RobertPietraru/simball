@@ -37,7 +37,7 @@
 						bind:value={search}
 						onkeydown={(e) => {
 							if (e.key === 'Enter') {
-								goto(withSearchPara, { replaceState: true });
+								goto(withSearchParameters(page.url, 'search', search), { replaceState: true });
 							}
 						}}
 						class="w-full pl-10 pr-4 py-2 "
@@ -50,14 +50,14 @@
 					class={searchInDefinition
 						? 'bg-primary text-primary-foreground'
 						: 'bg-secondary text-secondary-foreground'}
-					href={toggleSearchInDefinition()}
+					href={withSearchParameters(page.url, 'searchInDefinition', (!searchInDefinition).toString()).toString()}
 				>
 					{m.landing_page_search_in_definition_button()}
 				</Button>
 
 				<Button
 					variant="default"
-					href={searchWithFilter()}
+					href={withSearchParameters(page.url, 'search', search).toString()}
 				>
 					{m.landing_page_search_button()}</Button
 				>
