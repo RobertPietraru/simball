@@ -14,6 +14,7 @@
 	import { languageTag } from '$lib/paraglide/runtime';
 	import { page } from '$app/state';
 	import { i18n } from '$lib/i18n.js';
+
 	const { data } = $props();
 </script>
 

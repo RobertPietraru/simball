@@ -52,6 +52,3 @@ export const adminAuthorization: Handle = async ({ event, resolve }) => {
 
 
 export const handle: Handle = sequence(handleParaglide, handleAuth, authentication, adminAuthorization);
-
-
-

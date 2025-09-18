@@ -3,6 +3,7 @@
 	import { Search } from '@lucide/svelte';
 	import * as Table from '$lib/components/ui/table';
 	import { Input } from '$lib/components/ui/input';
+	import {marked} from "marked";
 	import { Button } from '$lib/components/ui/button';
 	import { withSearchParameters } from '$lib/utils';
 	import { page } from '$app/state';
@@ -81,8 +82,8 @@
 							class="cursor-pointer"
 						>
 							<Table.Cell class="font-medium">{word.text}</Table.Cell>
-							<Table.Cell class="text-sm text-muted-foreground">
-								{word.definition || 'Fără definiție'}
+							<Table.Cell class="text-sm text-muted-foreground prose">
+								{@html marked(word.definition) || 'Fără definiție'}
 							</Table.Cell>
 						</Table.Row>
 					{/each}
@@ -117,3 +118,9 @@
 		</div>
 	{/if}
 </main>
+
+<style>
+	:global(strong) {
+		font-weight: bold;
+	}
+</style>

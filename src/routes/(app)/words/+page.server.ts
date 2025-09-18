@@ -7,8 +7,6 @@ export async function load({ locals, url }) {
     const searchInDefinition = searchParams.get('searchInDefinition') === 'true';
     const page = tryParseInt(searchParams.get('page') || '1') ?? 1;
     const limit = tryParseInt(searchParams.get('limit') || '10') ?? 10;
-    console.log(search);
-
     const { words, total } = await adminService.searchWords({
         search,
         searchInDefinition,

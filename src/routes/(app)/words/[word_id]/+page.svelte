@@ -3,10 +3,7 @@
 	import { languageTag } from '$lib/paraglide/runtime';
 	import { Search } from '@lucide/svelte';
 	import * as m from '$lib/paraglide/messages';
-	import * as Table from '$lib/components/ui/table';
 	import { Input } from '$lib/components/ui/input';
-	import { withSearchParameters } from '$lib/utils';
-	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 
 	const { data } = $props();
@@ -15,6 +12,19 @@
 	$effect(() => {
 		search = data.search || '';
 	});
+	function getSearchURL(params: {
+		search: string;
+		searchInDefinition: boolean;
+	}) {
+		const searchParameters = new URLSearchParams();
+		if (params.search) {
+			searchParameters.set('search', params.search);
+		}
+		if (params.searchInDefinition) {
+			searchParameters.set('searchInDefinition', params.searchInDefinition.toString());
+		}
+		return `/words?${searchParameters.toString()}`;
+	}
 </script>
 
 <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
@@ -36,7 +46,7 @@
 						bind:value={search}
 						onkeydown={(e) => {
 							if (e.key === 'Enter') {
-								goto(withSearchParameters(page.url, 'search', search), { replaceState: true });
+								goto(getSearchURL({ search, searchInDefinition }), { replaceState: true });
 							}
 						}}
 						class="w-full pl-10 pr-4 py-2 "
@@ -49,19 +59,12 @@
 					class={searchInDefinition
 						? 'bg-primary text-primary-foreground'
 						: 'bg-secondary text-secondary-foreground'}
-					href={withSearchParameters(
-						page.url,
-						'searchInDefinition',
-						(!searchInDefinition).toString()
-					).toString()}
+					href={getSearchURL({ search, searchInDefinition })}
 				>
 					{m.landing_page_search_in_definition_button()}
 				</Button>
 
-				<Button
-					variant="default"
-					href={withSearchParameters(page.url, 'search', search).toString()}
-				>
+				<Button variant="default" href={getSearchURL({ search, searchInDefinition })}>
 					{m.landing_page_search_button()}</Button
 				>
 			</div>
