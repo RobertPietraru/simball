@@ -53,6 +53,19 @@
 						placeholder={m.landing_page_search_placeholder()}
 					/>
 				</div>
+
+				<Button variant="default" href={getSearchURL({ search, searchInDefinition })}>
+					{m.landing_page_search_button()}</Button
+				>
+			</div>
+
+			<div class="flex gap-4">
+				<Button variant="outline" onclick={()=>{search+='ă'}}>ă</Button>
+				<Button variant="outline" onclick={()=>{search+='â'}}>â</Button>
+				<Button variant="outline" onclick={()=>{search+='î'}}>î</Button>
+				<Button variant="outline" onclick={()=>{search+='ș'}}>ș</Button>
+				<Button variant="outline" onclick={()=>{search+='ț'}}>ț</Button>
+				<div class="flex-1"></div>
 				<Button
 					type="button"
 					variant={searchInDefinition ? 'default' : 'outline'}
@@ -63,12 +76,9 @@
 				>
 					{m.landing_page_search_in_definition_button()}
 				</Button>
-
-				<Button variant="default" href={getSearchURL({ search, searchInDefinition })}>
-					{m.landing_page_search_button()}</Button
-				>
 			</div>
 		</div>
+
 	</div>
 
 	<div class="space-y-4">

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { languageTag } from '$lib/paraglide/runtime';
-	import { Search } from '@lucide/svelte';
+	import { Search, Keyboard } from '@lucide/svelte';
 	import * as Table from '$lib/components/ui/table';
 	import { Input } from '$lib/components/ui/input';
-	import {marked} from "marked";
+	import { marked } from 'marked';
 	import { Button } from '$lib/components/ui/button';
 	import { withSearchParameters } from '$lib/utils';
 	import { page } from '$app/state';
@@ -15,8 +15,6 @@
 	$effect(() => {
 		search = data.search;
 	});
-
-
 </script>
 
 <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
@@ -44,17 +42,10 @@
 						class="w-full pl-10 pr-4 py-2 "
 						placeholder={m.landing_page_search_placeholder()}
 					/>
+					<Keyboard
+						class="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground"
+					/>
 				</div>
-				<Button
-					type="button"
-					variant={searchInDefinition ? 'default' : 'outline'}
-					class={searchInDefinition
-						? 'bg-primary text-primary-foreground'
-						: 'bg-secondary text-secondary-foreground'}
-					href={withSearchParameters(page.url, 'searchInDefinition', (!searchInDefinition).toString()).toString()}
-				>
-					{m.landing_page_search_in_definition_button()}
-				</Button>
 
 				<Button
 					variant="default"
@@ -62,6 +53,29 @@
 				>
 					{m.landing_page_search_button()}</Button
 				>
+			</div>
+			<div class="flex gap-4">
+				<Button variant="outline" onclick={()=>{search+='ă'}}>ă</Button>
+				<Button variant="outline" onclick={()=>{search+='â'}}>â</Button>
+				<Button variant="outline" onclick={()=>{search+='î'}}>î</Button>
+				<Button variant="outline" onclick={()=>{search+='ș'}}>ș</Button>
+				<Button variant="outline" onclick={()=>{search+='ț'}}>ț</Button>
+				<div class="flex-1"></div>
+
+				<Button
+					type="button"
+					variant={searchInDefinition ? 'default' : 'outline'}
+					class={searchInDefinition
+						? 'bg-primary text-primary-foreground'
+						: 'bg-secondary text-secondary-foreground'}
+					href={withSearchParameters(
+						page.url,
+						'searchInDefinition',
+						(!searchInDefinition).toString()
+					).toString()}
+				>
+					{m.landing_page_search_in_definition_button()}
+				</Button>
 			</div>
 		</div>
 	</div>

@@ -143,7 +143,7 @@ export class AdminService {
 					};
 				}
 
-				if (!params.searchInDefinition) {
+				if (!params.searchInDefinition || !params.search) {
 					return {
 						...word,
 						definition: word.definition!.substring(0,25) + '...',
