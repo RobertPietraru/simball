@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { languageTag } from '$lib/paraglide/runtime';
-	import { Search, Keyboard } from '@lucide/svelte';
+	import { Search} from '@lucide/svelte';
 	import * as Table from '$lib/components/ui/table';
 	import { Input } from '$lib/components/ui/input';
 	import { marked } from 'marked';
@@ -41,9 +41,6 @@
 						}}
 						class="w-full pl-10 pr-4 py-2 "
 						placeholder={m.landing_page_search_placeholder()}
-					/>
-					<Keyboard
-						class="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground"
 					/>
 				</div>
 

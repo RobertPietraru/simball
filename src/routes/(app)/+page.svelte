@@ -1,7 +1,12 @@
 <script>
 	import { Button } from '$lib/components/ui/button';
 	import { Search } from '@lucide/svelte';
+	import { goto } from '$app/navigation';
 	import * as m from '$lib/paraglide/messages.js';
+	import { withSearchParameters } from '$lib/utils';
+	import { page } from '$app/state';
+
+	let search = $state('');
 </script>
 
 
@@ -9,16 +14,23 @@
 	<div class="w-full max-w-[584px] space-y-8">
 		<h1 class="text-4xl font-bold text-center mb-8">{m.landing_page_headline()}</h1>
 		
-		<form class="relative" method="GET" action="/words">
+		<div class="relative">
 			<div class="flex items-center border rounded-full px-6 py-3 shadow-sm hover:shadow-md focus-within:shadow-md">
                 <Search class="h-5 w-5 text-muted-foreground" />
 				<input 
 					type="search"
+					bind:value={search}
+					onkeydown={(e) => {
+						if (e.key === 'Enter') {
+								goto(`/words?search=${search}`);
+							}
+						}}
+
 					class="w-full px-4 outline-none bg-transparent"
 					placeholder={m.landing_page_search_placeholder()}
 				/>
 			</div>
-		</form>
+		</div>
 
 		<div class="flex justify-center gap-2">
 			<Button variant="outline">{m.landing_page_search_button()}</Button>
